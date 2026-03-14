@@ -5,172 +5,288 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная</title>
+    <link rel="stylesheet" href="./styles/main.css">
 </head>
 
 <body>
     <header>
-        <ul>
-            <li>
-                <a href="index.html">Главная</a>
-            </li>
-            <li>
-                <a href="blog_page.html">Блог</a>
-            </li>
-        </ul>
+        <nav>
+            <div class="header-wrapper">
+                <a class="header-name">Denis-Folio</a>
+                <div class="header-nav">
+                    <a href="index.html" class="header-button active">About</a>
+                    <a href="blog_page.html" class="header-button">Blog</a>
+                    <a class="header-button" href="#contacts">Contact</a>
+                </div>
+            </div>
+        </nav>
     </header>
     <main>
-        <div class="about">
-            <h2>
-                Обо мне
-            </h2>
-            <p>
-                Добро пожаловать! Я веб-разработчик с 5-летним опытом в создании интерактивных интерфейсов.
-                На этом блоге я делюсь своими знаниями, проектами и идеями о том, как технология меняет способ общения
-                людей.
-                Здесь вы найдёте туториалы, кейсы из реальной практики и вдохновляющие истории.
-            </p>
-            <img src="source/image.png">
+        <div class="about-container">
+            <div class="about-me-container">
+                <h1 class="about-text">
+                    Hello! Я Денис
+                </h1>
+                <p class="about-subtext">
+                    Occaecat elit pariatur non Lorem laborum proident Lorem non sint nostrud. Et dolore incididunt
+                    mollit
+                    nostrud Lorem dolore. Qui aliquip aute amet eu adipisicing velit ullamco nulla sint enim do quis
+                    aute
+                </p>
+                <a class="about-me-link" href="#">More about me ></a>
+            </div>
+            <img src="source/img.jpeg" class="about-image">
         </div>
-        <div class="career">
-            <h2>
-                Моя карьера
-            </h2>
-            <h3>
-                Текущая должность
-            </h3>
-            <p>
-                Старший веб-разработчик, ООО "DigitalStudio" (2022 — по настоящее время)
-                Руководство командой из 4 разработчиков, разработка архитектуры фронтенда, менторство младших
-                специалистов,
-                внедрение новых технологий в рабочий процесс.
-            </p>
-
-            <h3>
-                Опыт работы:
-            </h3>
-            <div class="last-job">
-                <h4>Веб-разработчик, ООО "CreativeAgency" (2019 — 2022)</h4>
-                <p>
-                    Создание корпоративных сайтов и веб-приложений на React и Vue.js, оптимизация производительности,
-                    работа
-                    с клиентами и сбор требований.
+        <div class="career-container">
+            <div class="career-header-wrapper">
+                <h2 class="career-header">
+                    Моя карьера
+                </h2>
+                <p class="career-header-discription">
+                    Duis nisi do exercitation in irure aliqua commodo nisi eu id reprehenderit dolore fugiat consectetur
+                    irure
                 </p>
             </div>
-            <div class="last-job">
-                <h4>Фронтенд-разработчик, Стартап "TechVenture" (2018 — 2019)</h4>
-                <p>
-                    Разработка пользовательского интерфейса для платформы e-learning, работа с REST API и
-                    веб-стандартами.
-                </p>
+            <div class="job-container">
+                <div class="job-wrap">
+                    <img src="/source/companies/logo1.jpg" class="job-logo" />
+                    <div class="job-wrapper">
+                        <h3 class="job-name">ООО "DigitalStudio" (2022 — по настоящее время)</h3>
+                        <span class="job-vacancy">Старший веб-разработчик</span>
+                        <p class="job-discription">
+                            Руководство командой из 4 разработчиков, разработка архитектуры фронтенда, менторство
+                            младших
+                            специалистов,
+                            внедрение новых технологий в рабочий процесс.
+                        </p>
+                    </div>
+                </div>
+                <div class="job-wrap">
+                    <img src="/source/companies/logo2.jpg" class="job-logo" />
+                    <div class="job-wrapper">
+                        <h3 class="job-name">ООО "CreativeAgency" (2019 — 2022)</h3>
+                        <span class="job-vacancy">Веб-разработчик</span>
+                        <p class="job-discription">
+                            Создание корпоративных сайтов и веб-приложений на React и Vue.js, оптимизация
+                            производительности,
+                            работа
+                            с клиентами и сбор требований.
+                        </p>
+                    </div>
+                </div>
+                <div class="job-wrap">
+                    <img src="/source/companies/logo3.jpg" class="job-logo" />
+                    <div class="job-wrapper">
+                        <h3 class="job-name">Стартап "TechVenture" (2018 — 2019)</h3>
+                        <span class="job-vacancy">Фронтенд-разработчик</span>
+                        <p class="job-discription">
+                            Разработка пользовательского интерфейса для платформы e-learning, работа с REST API и
+                            веб-стандартами.
+                        </p>
+                    </div>
+                </div>
+                <div class="job-wrap">
+                    <img src="/source/companies/logo4.jpg" class="job-logo" />
+                    <div class="job-wrapper">
+                        <h3 class="job-name">Веб-студия "WebMasters" (2017 — 2018)</h3>
+                        <span class="job-vacancy">Интернет-стажёр</span>
+                        <p class="job-discription">
+                            Создание корпоративных сайтов и веб-приложений на React и Vue.js, оптимизация
+                            производительности,
+                            работа
+                            с клиентами и сбор требований.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="last-job">
-                <h4>Интернет-стажёр, Веб-студия "WebMasters" (2017 — 2018)</h4>
-                <p>
-                    Создание корпоративных сайтов и веб-приложений на React и Vue.js, оптимизация производительности,
-                    работа
-                    с клиентами и сбор требований.
-                </p>
-            </div>
-
-            <div class="education">
-                <h3>Образование:</h3>
-                <h4>Государственный Технический Университет, 2013 — 2017</h4>
-                <p>
+        </div>
+        <div class="education-container">
+            <h2 class="education-header">Образование:</h2>
+            <div class="education-description">
+                <h3 class="education-university">Государственный Технический Университет, 2013 — 2017</h3>
+                <p class="education-spec">
                     Бакалавриат по специальности "Информатика и вычислительная техника"
                 </p>
-                <p>
+                <p class="education-spec">
                     Выпускная работа: "Оптимизация загрузки веб-страниц на мобильных устройствах"
                 </p>
             </div>
-
-            <div class="courses">
-                <h3>Курсы и сертификации:</h3>
-                <ul>
-                    <li>Advanced React Development — Coursera (2023)</li>
-                    <li>UX/UI Design Fundamentals — Skillbox (2021)</li>
-                    <li>Web Performance Optimization — Frontend Masters (2022)</li>
-                    <li>Google Analytics Certification (2020)</li>
-                </ul>
-            </div>
-
-            <div class="skills">
-                <h3>Навыки:</h3>
-                <ul>
-                    <li>Программирование: JavaScript, TypeScript, React, Vue.js, HTML5, CSS3, Node.js</li>
-                    <li>Инструменты: Git, Webpack, Docker, Figma, VS Code</li>
-                    <li>Методологии: Agile, Scrum, Test-Driven Development</li>
-                </ul>
-            </div>
-
-            <div class="achievements">
-                <h3>Достижения:</h3>
-                <ul>
-                    <li>Разработал платформу для управления проектами, которой пользуются более 500 компаний</li>
-                    <li>Снизил время загрузки сайта на 60% благодаря оптимизации и внедрению современных стандартов</li>
-                    <li>Провёл более 20 воркшопов и мастер-классов для начинающих разработчиков</li>
-                    <li>Организовал две конференции "Web Technologies Conference" в своем городе</li>
-                </ul>
-            </div>
         </div>
-        <div class="pubs">
-            <h2>Последние статьи</h2>
-            <div class="article">
-                <h4>Как создать адаптивный дизайн за 30 минут</h4>
-                <a class="pub-date">Опубликовано: 15 декабря 2024</a>
-                <p>
-                    В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково
-                    хорошо
-                    выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах
-                    кода,
-                    которые можно использовать прямо сейчас.
-                </p>
-            </div>
-
-            <div class="article">
-                <h4>Как создать адаптивный дизайн за 30 минут</h4>
-                <a class="pub-date">Опубликовано: 15 декабря 2024</a>
-                <p>
-                    В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково
-                    хорошо
-                    выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах
-                    кода,
-                    которые можно использовать прямо сейчас.
-                </p>
-            </div>
-
-            <div class="article">
-                <h4>Как создать адаптивный дизайн за 30 минут</h4>
-                <a class="pub-date">Опубликовано: 15 декабря 2024</a>
-                <p>
-                    В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково
-                    хорошо
-                    выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах
-                    кода,
-                    которые можно использовать прямо сейчас.
-                </p>
-            </div>
-
-            <a href="blog_page.html" class="navigate-button">Посмотреть все статьи</a>
-            <!-- 
-            В задании было указано, что кнопка должна перенаправлять на страницу с блогом, 
-            однако через Button это сделать сложнее. 
-            Когда будет доступен CSS данная кнопка будет отображаться как кнопка
-        -->
+        <div class="courses-container">
+            <h2 class="courses-header">Курсы и сертификации:</h2>
+            <p class="courses-description">
+                <span>Advanced React Development — Coursera (2023)</span>
+                <span>UX/UI Design Fundamentals — Skillbox (2021)</span>
+                <span>Web Performance Optimization — Frontend Masters (2022)</span>
+                <span>Google Analytics Certification (2020)</span>
+            </p>
         </div>
 
+        <div class="skills-container">
+            <h2 class="skills-header">Навыки:</h2>
+            <div class="skills-description">
+                <span>JavaScript</span>
+                <span>TypeScript</span>
+                <span>React</span>
+                <span>Vue.js</span>
+                <span>HTML5 </span>
+                <span>CSS3 </span>
+                <span>Node.js</span>
+                <span>Git</span>
+                <span>Webpack</span>
+                <span>Docker</span>
+                <span>Figma </span>
+                <span>VS Code</span>
+                <span>Agile </span>
+                <span>Scrum </span>
+                <span>Test-Driven Development</span>
+            </div>
+
+        </div>
+
+        <div class="achievements-container">
+            <h3 class="achievements-header">Мои достижения</h3>
+            <div class="achievements-description">
+                <div class="achievement">
+                    <img src="/source/icons/2.png" alt="Платформа" class="achievement-image" />
+                    <p>Разработал платформу для управления проектами, которой пользуются более 500 компаний</p>
+                </div>
+                <div class="achievement">
+                    <img src="/source/icons/4.png" alt="Время" class="achievement-image" />
+                    <p>Снизил время загрузки сайта на 60% благодаря оптимизации и внедрению современных стандартов</p>
+                </div>
+                <div class="achievement">
+                    <img src="/source/icons/3.png" alt="Воркшоп" class="achievement-image" />
+                    <p>Провёл более 20 воркшопов и мастер-классов для начинающих разработчиков</p>
+                </div>
+                <div class="achievement">
+                    <img src="/source/icons/1.png" alt="Конференция" class="achievement-image" />
+                    <p>Организовал две конференции "Web Technologies Conference" в своем городе</p>
+                </div>
+            </div>
+        </div>
+        <div class="article-container">
+            <div class="article">
+                <h4 class="article-header">Как создать адаптивный дизайн за 30 минут</h4>
+                <span class="article-pub-date">Опубликовано: 15 декабря 2024</span>
+                <p class="article-description">
+                    В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково
+                    хорошо
+                    выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах
+                    кода,
+                    которые можно использовать прямо сейчас.
+                </p>
+                <div class="article-image">
+                    <img src="/source/blank.svg" />
+                </div>
+            </div>
+
+            <div class="article">
+                <h4 class="article-header">Как создать адаптивный дизайн за 30 минут</h4>
+                <span class="article-pub-date">Опубликовано: 15 декабря 2024</span>
+                <p class="article-description">
+                    В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково
+                    хорошо
+                    выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах
+                    кода,
+                    которые можно использовать прямо сейчас.
+                </p>
+                <div class="article-image">
+                    <img src="/source/blank.svg" />
+                </div>
+            </div>
+
+            <div class="article">
+                <h4 class="article-header">Как создать адаптивный дизайн за 30 минут</h4>
+                <span class="article-pub-date">Опубликовано: 15 декабря 2024</span>
+                <p class="article-description">
+                    В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково
+                    хорошо
+                    выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах
+                    кода,
+                    которые можно использовать прямо сейчас.
+                </p>
+                <div class="article-image">
+                    <img src="/source/blank.svg" />
+                </div>
+            </div>
+            <a href="blog_page.html" class="article-navigate-button">Посмотреть все статьи</a>
+
+        </div>
+        <div class="hobby-container">
+            <h3 class="hobby-header">Hobby projects</h3>
+            <p class="hobby-header-description">Duis nisi do exercitation in irure aliqua commodo nisi eu id
+                reprehenderit dolore fugiat consectetur irure labore est ea.</p>
+
+            <div class="hobby-image-wrapper">
+                <div class="hobby-card">
+                    <img class="hobby-image" src="/source/img.jpeg" alt="Рисунок" />
+                    <div class="hobby-image-description">
+                        <div class="hobby-image-description-content">
+                            <h4>Hobby project name</h4>
+                            <p>Описание проекта</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hobby-card">
+                    <img class="hobby-image" src="/source/img.jpeg" alt="Рисунок" />
+                    <div class="hobby-image-description">
+                        <div class="hobby-image-description-content">
+                            <h4>Hobby project name</h4>
+                            <p>Описание проекта</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hobby-blank-container">
+                <div class="hobby-blank">
+                    <img class="hobby-blank-image" src="/source/blank.svg" alt="Рисунок" />
+                    <div class="hobby-blank-description">
+                        <div class="hobby-blank-description-content">
+                            <h4>Hobby project name</h4>
+                            <p>Описание проекта</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hobby-blank">
+                    <img class="hobby-blank-image" src="/source/blank.svg" alt="Рисунок" />
+                    <div class="hobby-blank-description">
+                        <div class="hobby-blank-description-content">
+                            <h4>Hobby project name</h4>
+                            <p>Описание проекта</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
-    <footer>
-        <div class="contacts">
-            <h3>Контакты</h3>
-            <label for="mail">Email:</label>
-            <a href="mailto: alex@creativeblog.ru" class="mail">alex@creativeblog.ru</a> <br>
-            <label for="phone">Телефон:</label>
-            <a href="tel:+79991234567" class="phone">+7 (999) 123-45-67</a>
-        </div>
-        <div class="social-media">
-            <h3>Социальные сети:</h3>
-            <p>Instagram | Twitter | LinkedIn | GitHub</p>
-        </div>
+    <footer id="contacts">
+        <div class="footer-wrapper">
+            <a class="footer-head">Say hello and let's work together !</a>
+            <div class="footer-contacts-container">
+                <div class="footer-contacts">
+                    <div> Email: <a href="mailto: alex@creativeblog.ru">alex@creativeblog.ru</a> </div>
+                    <div> Телефон: <a href="tel:+79991234567">+7 (999) 123-45-67</a> </div>
+                    <div class="footer-links">
+                        <img src="source/vk.svg" />
+                        <img src="source/tg.svg" />
+                        <img src="source/git.svg" />
+                    </div>
+                </div>
+            </div>
+            <div class="footer-form-wrapper">
+                <form>
+                    <div class="footer-email-form">
+                        <label for="mail" class="footer-email-label">Email</label>
+                        <input type="email" class="footer-mail" placeholder="Your email address" />
+                    </div>
+                    <div class="footer-message-form">
+                        <label for="message">Input your message</label>
+                        <textarea class="footer-message" placeholder="Describe your project"></textarea>
+                    </div>
+                </form>
+                <a class="footer-submit-button">Submit</a>
+            </div>
     </footer>
 
 </body>

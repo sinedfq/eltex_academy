@@ -1,0 +1,95 @@
+.footer-wrapper {
+    padding: 2% 5% 0 5%;
+    font-family: Sarabun;
+    color: white;
+    background-color: #1E2128;
+    height: 418px;
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-row: 200px;
+    box-sizing: border-box;
+}
+
+.footer-head {
+    font-weight: 700;
+    font-size: 52px;
+    font-style: Bold;
+}
+
+.footer-contacts-container {
+    grid-row: 2;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    width: 150px;
+    justify-content: space-between;
+}
+
+.footer-form-wrapper {
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+    display: grid;
+    grid-template-rows: repeat(3, 0.2fr);
+}
+
+.footer-email-form {
+    margin-bottom: 1%;
+    grid-row: 1;
+}
+
+.footer-message-form {
+    grid-row: 2;
+}
+
+.footer-mail {
+    padding: 3%;
+    box-sizing: border-box;
+    width: 589px;
+    height: 60px;
+    left: 720px;
+    top: 3767px;
+    border: 1px solid #DDE0E7;
+    border-radius: 5px;
+
+}
+
+label {
+    display: block;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #FFFFFF;
+}
+
+.footer-message {
+    padding: 3%;
+    width: 589px;
+    height: 123px;
+    left: 720px;
+    top: 3868px;
+    border: 1px solid #DDE0E7;
+    border-radius: 5px;
+}
+
+.footer-submit-button {
+    width: 175px;
+    height: 51px;
+    left: 720px;
+    top: 4015px;
+    background: #61C15C;
+    border-radius: 5px;
+    grid-row: 3;
+    text-align: center;
+    line-height: 51px;
+}
+
+.footer-contacts a{
+    color: white;
+    text-decoration: underline;
+}
