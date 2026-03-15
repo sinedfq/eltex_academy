@@ -1,33 +1,13 @@
-.skills-container {
-    padding: 5vh;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 600px auto;
-}
-
-.skills-header {
-    grid-column: 1;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 63px;
-    color: #323743;
-}
-
 .skills-description {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
-    padding-left: 2vh;
 }
 
 .skills-description span {
     box-sizing: border-box;
     padding: 10px 20px;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
     font-weight: 300;
     font-size: 20px;
     line-height: 1.4;

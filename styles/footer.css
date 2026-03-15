@@ -1,9 +1,8 @@
 .footer-wrapper {
     padding: 2% 5% 0 5%;
-    font-family: Sarabun;
     color: white;
     background-color: #1E2128;
-    height: 418px;
+    height: 100%;
     display: grid;
     grid-template-columns: 50% auto;
     grid-row: 200px;
@@ -13,6 +12,7 @@
 .footer-head {
     font-weight: 700;
     font-size: 52px;
+    line-height: 50px;
     font-style: Bold;
 }
 
@@ -48,7 +48,7 @@
 .footer-mail {
     padding: 3%;
     box-sizing: border-box;
-    width: 589px;
+    width: 90%;
     height: 60px;
     left: 720px;
     top: 3767px;
@@ -59,8 +59,6 @@
 
 label {
     display: block;
-    font-family: 'Open Sans';
-    font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 25px;
@@ -69,7 +67,7 @@ label {
 
 .footer-message {
     padding: 3%;
-    width: 589px;
+    width: 90%;
     height: 123px;
     left: 720px;
     top: 3868px;
@@ -92,4 +90,17 @@ label {
 .footer-contacts a{
     color: white;
     text-decoration: underline;
+}
+
+@media (max-width: 970px) {
+    .footer-form-wrapper{
+        padding-top: 40px;
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .footer-contacts-container{
+        grid-column: 2;
+        grid-row: 1;
+    }
 }

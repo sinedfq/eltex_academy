@@ -2,6 +2,8 @@
     padding: 5vh;
     display: grid;
     grid-template-columns: auto 600px;
+    grid-template-rows: auto auto;
+    animation: fadeIn 1s ease-out forwards;
 }
 
 .about-image {
@@ -25,8 +27,6 @@
 .about-text {
     grid-column: 1;
     grid-row: 1;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 700;
     font-size: 52px;
     line-height: 63px;
@@ -39,32 +39,52 @@
     grid-row: 1;
     width: 483px;
     height: 78px;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 26px;
-    letter-spacing: -0.01em;
     color: #68686A;
 }
 
 .about-me-link {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     width: 141.5px;
     color: #61C15C;
 }
 
 .about-arrow {
-
     width: 16px;
     height: 8.5px;
     left: 265px;
     top: 601px;
-
     background: #61C15C;
     border: 3px solid #61C15C;
     transform: rotate(-90deg);
+}
 
+@media (max-width: 1100px) {
+    .about-image{
+        grid-column: 1;
+        grid-row: 1;
+        width: 400px;
+        height: 400px;
+        justify-content: center;
+    }
+
+    .about-me-container{
+        padding-top: 30px;
+        justify-content: center;
+        grid-column: 1;
+        grid-row: 2;
+    }
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  } 
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  } 
 }

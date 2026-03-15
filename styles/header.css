@@ -10,12 +10,9 @@
     left: 132px;
     top: 33px;
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 500;
     font-size: 30px;
     line-height: 36px;
-    letter-spacing: 0.01em;
     color: #1A1B20;
     grid-column: 1;
 
@@ -30,29 +27,22 @@
 }
 
 .header-button {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 18px;
-    letter-spacing: -0.03em;
     color: #68686A;
     transition: 0.5s;
 }
 
 .header-button:hover {
-    /* About me */
     font-weight: 500;
     color: #61C15C;
 
 }
 
 .header-button.active {
-    font-family: 'Inter';
-    font-style: normal;
     font-size: 15px;
     line-height: 18px;
-    letter-spacing: -0.03em;
     font-weight: 500;
     color: #61C15C;
     transition: 0.5s;

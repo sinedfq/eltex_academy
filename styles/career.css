@@ -1,8 +1,3 @@
-.career-container {
-    padding: 5vh;
-    display: grid;
-    grid-template-columns: 600px auto;
-}
 
 .career-header-wrapper {
     box-sizing: border-box;
@@ -13,24 +8,11 @@
     grid: 1;
 }
 
-.career-header {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 52px;
-    line-height: 63px;
-
-    color: #323743;
-
-}
-
 .career-header-discription {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
+    width: 400px;
     font-size: 21px;
     line-height: 25px;
-    letter-spacing: -0.02em;
     color: #323743;
 }
 
@@ -41,7 +23,7 @@
     flex-wrap: nowrap;
 }
 
-.job-wrap{
+.job-wrap {
     display: grid;
     grid-template-columns: 100px auto;
 }
@@ -64,8 +46,6 @@
 }
 
 .job-name {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
@@ -73,8 +53,6 @@
 }
 
 .job-discription {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 300;
     font-size: 16px;
     line-height: 25px;
@@ -82,10 +60,25 @@
 }
 
 .job-vacancy {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 25px;
     color: #323743;
+}
+
+@media (max-width: 970px) {
+    .career-header-discription {
+        width: 350px;
+        font-size: 15px;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+    .career-header-discription {
+        width: 300px;
+        font-size: 5px;
+    }
+
 }

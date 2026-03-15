@@ -12,7 +12,74 @@
 @import 'achievements.css';
 @import 'article.css';
 @import 'hobby.css';
+@import 'blog.css';
 
 html {
   scroll-behavior: smooth;
+}
+
+* {
+  font-family: 'Inter';
+  font-style: normal;
+  line-height: 26px;
+  letter-spacing: -0.01em;
+  box-sizing: border-box;
+}
+
+.my-header {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 63px;
+  color: #323743;
+}
+
+.my-container {
+  padding: 5vh;
+  display: grid;
+  grid-template-columns: 700px auto;
+  animation: fadeIn 2s ease-out;
+}
+
+
+@media (max-width: 970px) {
+  .my-container {
+    grid-template-columns: 400px auto;
+  }
+
+  .my-header {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 63px;
+    color: #323743;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+  .my-container {
+    grid-template-columns: 100px auto;
+  }
+
+  .my-header {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 63px;
+    color: #323743;
+  }
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
