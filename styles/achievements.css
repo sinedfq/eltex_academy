@@ -1,7 +1,7 @@
 .achievements-container {
-    padding: 5vh;
     display: grid;
     grid-template-rows: 200px auto;
+    grid-template-rows: repeat(auto-fit, minmax(300, 1fr));
 }
 
 .achievements-header {
@@ -31,7 +31,7 @@
     justify-content: center;
     padding: 10px 40px;
     font-weight: 400;
-    font-size: 18px;
+    font-size: clamp(14px, 2vw, 18px);
     line-height: 1.4;
     color: #323743;
     -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
@@ -67,5 +67,11 @@
         line-height: 63px;
         color: #323743;
         text-align: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .achievements-description {
+        padding: 0px;
     }
 }

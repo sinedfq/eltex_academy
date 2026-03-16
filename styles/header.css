@@ -5,13 +5,8 @@
 }
 
 .header-name {
-    width: 162px;
-    height: 36px;
-    left: 132px;
-    top: 33px;
-
     font-weight: 500;
-    font-size: 30px;
+    font-size: clamp(20px, 2vw, 30px);
     line-height: 36px;
     color: #1A1B20;
     grid-column: 1;
@@ -28,7 +23,7 @@
 
 .header-button {
     font-weight: 400;
-    font-size: 15px;
+    font-size: clamp(25px, 2vw, 15px);
     line-height: 18px;
     color: #68686A;
     transition: 0.5s;
@@ -41,7 +36,7 @@
 }
 
 .header-button.active {
-    font-size: 15px;
+    font-size: clamp(25px, 2vw, 15px);
     line-height: 18px;
     font-weight: 500;
     color: #61C15C;

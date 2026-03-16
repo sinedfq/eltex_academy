@@ -12,7 +12,7 @@
 
 .education-university {
     font-weight: 500;
-    font-size: 30px;
+    font-size: clamp(20px, 2vw, 30px);
     line-height: 25px;
     letter-spacing: -0.02em;
     color: #323743;
@@ -21,29 +21,7 @@
 .education-spec {
     padding-top: 20px;
     font-weight: 200;
-    font-size: 30px;
+    font-size: clamp(20px, 2vw, 30px);
     line-height: 25px;
     color: #68686A;
-}
-
-@media (max-width: 500px) {
-    .education-spec {
-        font-size: 15px;
-        margin-left: 50px;
-    }
-    .education-university {
-        font-size: 15px;
-        margin-left: 50px;
-    }
-
-}
-
-@media (max-width: 900px) {
-    .education-spec {
-        font-size: 25px;
-    }
-    .education-university {
-        font-size: 25px;
-    }
-
 }

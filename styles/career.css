@@ -1,23 +1,20 @@
 
 .career-header-wrapper {
     box-sizing: border-box;
-    padding-top: 15vh;
+    margin: auto 0;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    grid: 1;
 }
 
 .career-header-discription {
     font-weight: 400;
-    width: 400px;
-    font-size: 21px;
+    font-size: clamp(14px, 2vw, 21px);
     line-height: 25px;
     color: #323743;
 }
 
 .job-container {
-    grid-column: 2;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -25,24 +22,22 @@
 
 .job-wrap {
     display: grid;
-    grid-template-columns: 100px auto;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .job-logo {
     box-sizing: border-box;
-    padding: 2vh;
+    padding: 10px;
     max-width: 100px;
-    max-height: 100px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .job-wrapper {
-    grid-column: 2;
-    gap: 10px;
     padding: 10px;
     border-bottom: 2px solid #BDC1CA;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
 }
 
 .job-name {
@@ -64,21 +59,4 @@
     font-size: 16px;
     line-height: 25px;
     color: #323743;
-}
-
-@media (max-width: 970px) {
-    .career-header-discription {
-        width: 350px;
-        font-size: 15px;
-    }
-
-}
-
-
-@media (max-width: 400px) {
-    .career-header-discription {
-        width: 300px;
-        font-size: 5px;
-    }
-
 }

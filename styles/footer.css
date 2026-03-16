@@ -3,6 +3,7 @@
     color: white;
     background-color: #1E2128;
     height: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: 50% auto;
     grid-row: 200px;

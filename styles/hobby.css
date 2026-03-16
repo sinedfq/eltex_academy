@@ -169,3 +169,11 @@
         width: 100%;
     }
 }
+
+@media (max-width: 400px) {
+    .hobby-blank-container {
+        padding: 0;
+        padding-top: 15px;
+    }
+
+}

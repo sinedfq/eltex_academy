@@ -3,22 +3,10 @@
     gap: 10px;
     grid-column: 2;
     font-weight: 300;
-    font-size: 32px;
+    font-size: clamp(20px, 2vw, 32px);
     line-height: 63px;
     color: #323743;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-}
-
-@media (max-width: 500px) {
-    .courses-description {
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 900px) {
-    .courses-description {
-        font-size: 25px;
-    }
 }

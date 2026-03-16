@@ -30,7 +30,7 @@ html {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-size: 52px;
+  font-size: clamp(28px, 2vw, 52px);
   line-height: 63px;
   color: #323743;
 }
@@ -39,38 +39,57 @@ html {
   padding: 5vh;
   display: grid;
   grid-template-columns: 700px auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   animation: fadeIn 2s ease-out;
 }
 
-
-@media (max-width: 970px) {
-  .my-container {
-    grid-template-columns: 400px auto;
-  }
-
-  .my-header {
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 63px;
-    color: #323743;
-  }
-
+.myblog-image {
+  position: absolute;
+  left: 49.38%;
+  right: 35.83%;
+  top: 15vw;
+  z-index: 999;
+  pointer-events: none;
+  animation: fadeIn 1s ease-out;
 }
 
-
-@media (max-width: 500px) {
-  .my-container {
-    grid-template-columns: 100px auto;
-  }
-
-  .my-header {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 63px;
-    color: #323743;
-  }
-
+.myblog-image.blog {
+  position: absolute;
+  left: 75%;
+  top: 5vw;
+  z-index: 999;
+  pointer-events: none;
 }
+
+.my-header.blog {
+  font-weight: 800;
+  margin-bottom: 30px;
+  font-size: clamp(50px, 2vw, 19px);
+  line-height: 63px;
+  display: block;
+  justify-self: center;
+  color: #323743;
+}
+
+@media (max-width: 780px) {
+  .myblog-image{
+    animation: fadeOut 1s ease;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 
 @keyframes fadeIn {
   from {
