@@ -78,21 +78,30 @@ label {
     line-height: 51px;
 }
 
-.footer-contacts a{
-    font-size: clamp(15px, 2vw, 30px);
+.footer-contacts a {
+    font-size: clamp(10px, 2vw, 18px);
     color: white;
     text-decoration: underline;
 }
 
 @media (max-width: 970px) {
-    .footer-form-wrapper{
+    .footer-form-wrapper {
         padding-top: 40px;
         grid-column: 1;
         grid-row: 2;
     }
-    
-    .footer-contacts-container{
+
+    .footer-contacts-container {
         grid-column: 2;
         grid-row: 1;
+    }
+}
+
+@media (max-width: 400px) {
+    .footer-wrapper {
+        padding: 0;
+    }
+    .footer-contacts {
+        width: 100%;
     }
 }
