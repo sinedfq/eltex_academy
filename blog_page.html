@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="./styles/main.css">
 </head>
 
-
-
 <body>
     <header>
         <nav>
@@ -24,8 +22,21 @@
         </nav>
     </header>
     <main>
-        <img class="myblog-image blog" src="source/myblogs.svg" />
-        <h2 class="my-header blog">Cтатьи</h2>
+        <section class="blog-hero">
+            <div class="blog-hero-content">
+                <p class="blog-hero-kicker">Blog</p>
+                <h1 class="my-header blog">Статьи</h1>
+                <p class="blog-hero-description">
+                    Подборка заметок о фронтенде, интерфейсах и процессе разработки. Здесь собраны материалы про
+                    верстку, адаптив, UX и практические приемы, которые можно сразу использовать в работе.
+                </p>
+            </div>
+            <div class="blog-hero-art">
+                <span class="blog-hero-note">frontend notes</span>
+                <img class="myblog-image blog" src="source/myblogs.svg" alt="Декоративная иллюстрация блога" />
+            </div>
+        </section>
+
         <div class="blog-container">
             <div class="blog-article blog-article-large">
                 <img src="source/blank.svg" alt="Главное фото" />
@@ -39,7 +50,6 @@
                 <div class="blog-content">
                     <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
                     <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-
                 </div>
             </div>
             <div class="blog-article">
@@ -91,16 +101,8 @@
                     <p class="blog-date">Опубликовано: 15 декабря 2024</p>
                 </div>
             </div>
-
         </div>
-        <!-- <form class="create-form">
-            <h2>Создать статью</h2>
-            <input placeholder="Заголовок">
-            <textarea placeholder="Текст статьи"></textarea> <br>
-            <button>Добавить</button>
-        </form> -->
 
-        </div>
         <a href="blog_page.html" class="blog-navigate-button">Дальше</a>
     </main>
     <footer id="contacts">
@@ -108,8 +110,8 @@
             <a class="footer-head">Say hello and let's work together !</a>
             <div class="footer-contacts-container">
                 <div class="footer-contacts">
-                    <div> Email: <a href="mailto: alex@creativeblog.ru">alex@creativeblog.ru</a> </div>
-                    <div> Телефон: <a href="tel:+79991234567">+7 (999) 123-45-67</a> </div>
+                    <div>Email: <a href="mailto: alex@creativeblog.ru">alex@creativeblog.ru</a></div>
+                    <div>Телефон: <a href="tel:+79991234567">+7 (999) 123-45-67</a></div>
                     <div class="footer-links">
                         <img src="source/vk.svg" />
                         <img src="source/tg.svg" />
@@ -131,8 +133,8 @@
                 </form>
                 <a class="footer-submit-button">Submit</a>
             </div>
+        </div>
     </footer>
 </body>
-
 
 </html>

@@ -11,10 +11,10 @@
     font-weight: 300;
     font-size: 20px;
     line-height: 1.4;
-    color: #323743;
-    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    color: var(--color-text);
+    -webkit-box-shadow: var(--shadow-soft);
+    -moz-box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-soft);
     border-radius: 8px;
     white-space: nowrap;
     transition: 0.25s ease-in;
@@ -22,6 +22,6 @@
 }
 
 .skills-description span:hover {
-    background-color: rgb(131, 131, 255);
-    color: azure;
+    background-color: var(--color-accent);
+    color: var(--color-surface);
 }
