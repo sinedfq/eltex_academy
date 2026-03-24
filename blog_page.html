@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./styles/main.css">
 </head>
 
+<script src="./scripts/blog_scirpt.js" defer></script>
+
 <body>
     <header>
         <nav>
@@ -104,6 +106,51 @@
         </div>
 
         <a href="blog_page.html" class="blog-navigate-button">Дальше</a>
+
+        <div class="blog-side-menu">
+            <div class="blog-side-menu-actions" id="blog-side-menu-actions">
+                <button type="button" class="blog-side-action blog-side-action-primary" id="open-add-dialog">
+                    Добавить новость
+                </button>
+                <button type="button" class="blog-side-action blog-side-action-secondary" id="open-stats-dialog">
+                    Посмотреть статьи
+                </button>
+            </div>
+            <button type="button" class="blog-side-toggle" id="toggle-blog-menu">
+                +
+            </button>
+        </div>
+
+        <dialog id="add-news-dialog">
+            <div class="blog-dialog-content">
+                <h3 class="blog-dialog-title">Добавить новость</h3>
+                <form id="add-news-form" class="blog-dialog-form">
+                    <input id="news-title" class="blog-add-input" type="text" placeholder="Заголовок" required />
+                    <textarea id="news-text" class="blog-add-textarea" placeholder="Текст статьи" required></textarea>
+                    <div class="blog-dialog-actions">
+                        <button type="submit" class="blog-add-button">Добавить</button>
+                        <button type="button" class="blog-cancel-button" id="close-add-dialog">Отмена</button>
+                    </div>
+                </form>
+            </div>
+        </dialog>
+
+        <dialog id="article-dialog">
+            <div class="blog-dialog-content">
+                <h3 class="my-header">Статистика страницы</h3>
+                <div class="blog-stats-grid">
+                    <div class="article-counter">
+                        <p class="article-counter-label">Всего статей:</p>
+                        <p id="article-counter" class="article-counter-value">0</p>
+                    </div>
+                    <div class="article-counter">
+                        <p class="article-counter-label">Комментарии:</p>
+                        <p id="article-comments-counter" class="article-counter-value">0</p>
+                    </div>
+                </div>
+                <button type="button" class="blog-cancel-button" id="close-article-dialog">Закрыть</button>
+            </div>
+        </dialog>
     </main>
     <footer id="contacts">
         <div class="footer-wrapper">
