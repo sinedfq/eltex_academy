@@ -107,6 +107,20 @@ function setupAddNewsForm() {
     });
 }
 
+function setupDeleteButtons() {
+    const deleteButtons = document.querySelectorAll('.blog-delete');
+
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const article = button.closest('.blog-article');
+            if (article) {
+                article.remove();
+                calculateArticles();
+            }
+        });
+    });
+}
+setupDeleteButtons();
 calculateArticles();
 setupSideMenu();
 setupDialogs();
