@@ -1,18 +1,15 @@
 .achievements-container {
-    display: grid;
-    grid-template-rows: 200px auto;
-    grid-template-rows: repeat(auto-fit, minmax(300, 1fr));
+    width: min(100%, 1200px);
+    margin: 0 auto;
+    padding: 5vh;
 }
 
 .achievements-header {
-    margin-top: 5vh;
-    grid-row: 1;
-    font-family: 'Inter';
-    font-style: normal;
+    margin: 0 0 5vh;
     font-weight: 700;
     font-size: 52px;
     line-height: 63px;
-    color: #323743;
+    color: var(--color-text);
     text-align: center;
 }
 
@@ -33,10 +30,10 @@
     font-weight: 400;
     font-size: clamp(14px, 2vw, 18px);
     line-height: 1.4;
-    color: #323743;
-    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    color: var(--color-text);
+    -webkit-box-shadow: var(--shadow-soft);
+    -moz-box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-soft);
     border-radius: 8px;
     transition: 0.2s ease-in;
 }
@@ -60,12 +57,10 @@
 
 @media (max-width: 1200px) {
     .achievements-header {
-        margin-top: 5vh;
-        grid-row: 1;
         font-weight: 700;
         font-size: 40px;
         line-height: 63px;
-        color: #323743;
+        color: var(--color-text);
         text-align: center;
     }
 }

@@ -5,7 +5,7 @@
     font-weight: 300;
     font-size: clamp(20px, 2vw, 32px);
     line-height: 63px;
-    color: #323743;
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
