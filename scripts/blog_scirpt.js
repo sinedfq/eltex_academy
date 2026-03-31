@@ -93,7 +93,8 @@ function setupAddNewsForm() {
         const article = document.createElement('div');
         article.className = 'blog-article';
         article.innerHTML = `
-            <img src="source/blank.svg" alt="Фото" />
+            <button type="button" class="blog-delete">X</button>
+            <img src="source/blank.svg" alt="Р¤РѕС‚Рѕ" />
             <div class="blog-content">
                 <p class="blog-text">${title}</p>
                 <p class="blog-date">Опубликовано: ${new Date().toLocaleDateString('ru-RU')}</p>
@@ -107,6 +108,30 @@ function setupAddNewsForm() {
     });
 }
 
+function setupDeleteButtons() {
+    const container = document.querySelector('.blog-container');
+
+    if (!container) {
+        return;
+    }
+
+    container.addEventListener('click', (event) => {
+        const deleteButton = event.target.closest('.blog-delete');
+
+        if (!deleteButton || !container.contains(deleteButton)) {
+            return;
+        }
+
+        const article = deleteButton.closest('.blog-article');
+
+        if (article) {
+            article.remove();
+            calculateArticles();
+        }
+    });
+}
+
+setupDeleteButtons();
 calculateArticles();
 setupSideMenu();
 setupDialogs();
