@@ -1,72 +1,5 @@
-const INITIAL_LOAD_DELAY_MS = 1200;
-const ADD_ARTICLE_DELAY_MS = 900;
-
-let isLoading = false;
-
 function getArticlesContainer() {
     return document.querySelector('.blog-container');
-}
-
-function getAddFormElements() {
-    return {
-        form: document.getElementById('add-news-form'),
-        titleInput: document.getElementById('news-title'),
-        textInput: document.getElementById('news-text'),
-        submitButton: document.querySelector('#add-news-form .blog-add-button'),
-        cancelButton: document.getElementById('close-add-dialog'),
-    };
-}
-
-function setLoadingState(loading) {
-    const container = getArticlesContainer();
-    const emptyState = document.getElementById('blog-empty-state');
-    const toggleButton = document.getElementById('toggle-blog-menu');
-    const openAddButton = document.getElementById('open-add-dialog');
-    const openStatsButton = document.getElementById('open-stats-dialog');
-    const closeStatsButton = document.getElementById('close-article-dialog');
-    const navigateButton = document.querySelector('.blog-navigate-button');
-    const { titleInput, textInput, submitButton, cancelButton } = getAddFormElements();
-    const deleteButtons = document.querySelectorAll('.blog-delete');
-
-    isLoading = loading;
-
-    if (container) {
-        container.classList.toggle('is-loading', loading);
-    }
-
-    if (emptyState) {
-        emptyState.hidden = loading || document.querySelectorAll('.blog-article').length > 0;
-    }
-
-    [
-        toggleButton,
-        openAddButton,
-        openStatsButton,
-        closeStatsButton,
-        submitButton,
-        cancelButton,
-        titleInput,
-        textInput,
-        ...deleteButtons,
-    ].forEach((element) => {
-        if (!element) {
-            return;
-        }
-
-        element.disabled = loading;
-    });
-
-    if (navigateButton) {
-        navigateButton.classList.toggle('blog-control-disabled', loading);
-        navigateButton.setAttribute('aria-disabled', String(loading));
-        navigateButton.tabIndex = loading ? -1 : 0;
-    }
-}
-
-function wait(ms) {
-    return new Promise((resolve) => {
-        window.setTimeout(resolve, ms);
-    });
 }
 
 function calculateArticles() {
@@ -164,7 +97,9 @@ function setupSideMenu() {
 }
 
 function setupAddNewsForm() {
-    const { form, titleInput, textInput } = getAddFormElements();
+    const form = document.getElementById('add-news-form');
+    const titleInput = document.getElementById('news-title');
+    const textInput = document.getElementById('news-text');
     const container = getArticlesContainer();
     const addDialog = document.getElementById('add-news-dialog');
 
