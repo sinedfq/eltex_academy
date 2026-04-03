@@ -1,13 +1,20 @@
+function getArticlesContainer() {
+    return document.querySelector('.blog-container');
+}
+
 function calculateArticles() {
     const articles = document.querySelectorAll('.blog-article');
     const articlesCount = articles.length;
-    const articlesPerPage = 5;
-    const pagesCount = Math.ceil(articlesCount / articlesPerPage);
     const counter = document.getElementById('article-counter');
     const commentsCounter = document.getElementById('article-comments-counter');
+    const emptyState = document.getElementById('blog-empty-state');
+
+    if (emptyState) {
+        emptyState.hidden = articlesCount > 0;
+    }
 
     if (!counter) {
-        return pagesCount;
+        return articlesCount;
     }
 
     counter.textContent = String(articlesCount);
@@ -16,7 +23,7 @@ function calculateArticles() {
         commentsCounter.textContent = '0';
     }
 
-    return pagesCount;
+    return articlesCount;
 }
 
 function setupDialogs() {
@@ -73,7 +80,7 @@ function setupAddNewsForm() {
     const form = document.getElementById('add-news-form');
     const titleInput = document.getElementById('news-title');
     const textInput = document.getElementById('news-text');
-    const container = document.querySelector('.blog-container');
+    const container = getArticlesContainer();
     const addDialog = document.getElementById('add-news-dialog');
 
     if (!form || !titleInput || !textInput || !container || !addDialog) {
@@ -93,7 +100,8 @@ function setupAddNewsForm() {
         const article = document.createElement('div');
         article.className = 'blog-article';
         article.innerHTML = `
-            <img src="source/blank.svg" alt="Фото" />
+            <button type="button" class="blog-delete">X</button>
+            <img src="source/blank.svg" alt="Р¤РѕС‚Рѕ" />
             <div class="blog-content">
                 <p class="blog-text">${title}</p>
                 <p class="blog-date">Опубликовано: ${new Date().toLocaleDateString('ru-RU')}</p>
@@ -107,6 +115,30 @@ function setupAddNewsForm() {
     });
 }
 
+function setupDeleteButtons() {
+    const container = getArticlesContainer();
+
+    if (!container) {
+        return;
+    }
+
+    container.addEventListener('click', (event) => {
+        const deleteButton = event.target.closest('.blog-delete');
+
+        if (!deleteButton || !container.contains(deleteButton)) {
+            return;
+        }
+
+        const article = deleteButton.closest('.blog-article');
+
+        if (article) {
+            article.remove();
+            calculateArticles();
+        }
+    });
+}
+
+setupDeleteButtons();
 calculateArticles();
 setupSideMenu();
 setupDialogs();
