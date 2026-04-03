@@ -1,13 +1,87 @@
+const INITIAL_LOAD_DELAY_MS = 1200;
+const ADD_ARTICLE_DELAY_MS = 900;
+
+let isLoading = false;
+
+function getArticlesContainer() {
+    return document.querySelector('.blog-container');
+}
+
+function getAddFormElements() {
+    return {
+        form: document.getElementById('add-news-form'),
+        titleInput: document.getElementById('news-title'),
+        textInput: document.getElementById('news-text'),
+        submitButton: document.querySelector('#add-news-form .blog-add-button'),
+        cancelButton: document.getElementById('close-add-dialog'),
+    };
+}
+
+function setLoadingState(loading) {
+    const container = getArticlesContainer();
+    const emptyState = document.getElementById('blog-empty-state');
+    const toggleButton = document.getElementById('toggle-blog-menu');
+    const openAddButton = document.getElementById('open-add-dialog');
+    const openStatsButton = document.getElementById('open-stats-dialog');
+    const closeStatsButton = document.getElementById('close-article-dialog');
+    const navigateButton = document.querySelector('.blog-navigate-button');
+    const { titleInput, textInput, submitButton, cancelButton } = getAddFormElements();
+    const deleteButtons = document.querySelectorAll('.blog-delete');
+
+    isLoading = loading;
+
+    if (container) {
+        container.classList.toggle('is-loading', loading);
+    }
+
+    if (emptyState) {
+        emptyState.hidden = loading || document.querySelectorAll('.blog-article').length > 0;
+    }
+
+    [
+        toggleButton,
+        openAddButton,
+        openStatsButton,
+        closeStatsButton,
+        submitButton,
+        cancelButton,
+        titleInput,
+        textInput,
+        ...deleteButtons,
+    ].forEach((element) => {
+        if (!element) {
+            return;
+        }
+
+        element.disabled = loading;
+    });
+
+    if (navigateButton) {
+        navigateButton.classList.toggle('blog-control-disabled', loading);
+        navigateButton.setAttribute('aria-disabled', String(loading));
+        navigateButton.tabIndex = loading ? -1 : 0;
+    }
+}
+
+function wait(ms) {
+    return new Promise((resolve) => {
+        window.setTimeout(resolve, ms);
+    });
+}
+
 function calculateArticles() {
     const articles = document.querySelectorAll('.blog-article');
     const articlesCount = articles.length;
-    const articlesPerPage = 5;
-    const pagesCount = Math.ceil(articlesCount / articlesPerPage);
     const counter = document.getElementById('article-counter');
     const commentsCounter = document.getElementById('article-comments-counter');
+    const emptyState = document.getElementById('blog-empty-state');
+
+    if (emptyState) {
+        emptyState.hidden = articlesCount > 0;
+    }
 
     if (!counter) {
-        return pagesCount;
+        return articlesCount;
     }
 
     counter.textContent = String(articlesCount);
@@ -16,7 +90,7 @@ function calculateArticles() {
         commentsCounter.textContent = '0';
     }
 
-    return pagesCount;
+    return articlesCount;
 }
 
 function setupDialogs() {
@@ -39,19 +113,35 @@ function setupDialogs() {
     }
 
     openStatsButton.addEventListener('click', () => {
+        if (isLoading) {
+            return;
+        }
+
         calculateArticles();
         statsDialog.showModal();
     });
 
     closeStatsButton.addEventListener('click', () => {
+        if (isLoading) {
+            return;
+        }
+
         statsDialog.close();
     });
 
     openAddButton.addEventListener('click', () => {
+        if (isLoading) {
+            return;
+        }
+
         addDialog.showModal();
     });
 
     closeAddButton.addEventListener('click', () => {
+        if (isLoading) {
+            return;
+        }
+
         addDialog.close();
     });
 }
@@ -65,23 +155,29 @@ function setupSideMenu() {
     }
 
     toggleButton.addEventListener('click', () => {
+        if (isLoading) {
+            return;
+        }
+
         menu.classList.toggle('is-open');
     });
 }
 
 function setupAddNewsForm() {
-    const form = document.getElementById('add-news-form');
-    const titleInput = document.getElementById('news-title');
-    const textInput = document.getElementById('news-text');
-    const container = document.querySelector('.blog-container');
+    const { form, titleInput, textInput } = getAddFormElements();
+    const container = getArticlesContainer();
     const addDialog = document.getElementById('add-news-dialog');
 
     if (!form || !titleInput || !textInput || !container || !addDialog) {
         return;
     }
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        if (isLoading) {
+            return;
+        }
 
         const title = titleInput.value.trim();
         const text = textInput.value.trim();
@@ -90,10 +186,14 @@ function setupAddNewsForm() {
             return;
         }
 
+        setLoadingState(true);
+        await wait(ADD_ARTICLE_DELAY_MS);
+
         const article = document.createElement('div');
         article.className = 'blog-article';
         article.innerHTML = `
-            <img src="source/blank.svg" alt="Фото" />
+            <button type="button" class="blog-delete">X</button>
+            <img src="source/blank.svg" alt="Р¤РѕС‚Рѕ" />
             <div class="blog-content">
                 <p class="blog-text">${title}</p>
                 <p class="blog-date">Опубликовано: ${new Date().toLocaleDateString('ru-RU')}</p>
@@ -104,10 +204,47 @@ function setupAddNewsForm() {
         form.reset();
         addDialog.close();
         calculateArticles();
+        setLoadingState(false);
     });
 }
 
-calculateArticles();
+function setupDeleteButtons() {
+    const container = getArticlesContainer();
+
+    if (!container) {
+        return;
+    }
+
+    container.addEventListener('click', (event) => {
+        if (isLoading) {
+            return;
+        }
+
+        const deleteButton = event.target.closest('.blog-delete');
+
+        if (!deleteButton || !container.contains(deleteButton)) {
+            return;
+        }
+
+        const article = deleteButton.closest('.blog-article');
+
+        if (article) {
+            article.remove();
+            calculateArticles();
+        }
+    });
+}
+
+setupDeleteButtons();
 setupSideMenu();
 setupDialogs();
 setupAddNewsForm();
+
+async function initializeBlog() {
+    setLoadingState(true);
+    await wait(INITIAL_LOAD_DELAY_MS);
+    calculateArticles();
+    setLoadingState(false);
+}
+
+initializeBlog();
