@@ -1,13 +1,20 @@
+function getArticlesContainer() {
+    return document.querySelector('.blog-container');
+}
+
 function calculateArticles() {
     const articles = document.querySelectorAll('.blog-article');
     const articlesCount = articles.length;
-    const articlesPerPage = 5;
-    const pagesCount = Math.ceil(articlesCount / articlesPerPage);
     const counter = document.getElementById('article-counter');
     const commentsCounter = document.getElementById('article-comments-counter');
+    const emptyState = document.getElementById('blog-empty-state');
+
+    if (emptyState) {
+        emptyState.hidden = articlesCount > 0;
+    }
 
     if (!counter) {
-        return pagesCount;
+        return articlesCount;
     }
 
     counter.textContent = String(articlesCount);
@@ -16,7 +23,7 @@ function calculateArticles() {
         commentsCounter.textContent = '0';
     }
 
-    return pagesCount;
+    return articlesCount;
 }
 
 function setupDialogs() {
@@ -73,7 +80,7 @@ function setupAddNewsForm() {
     const form = document.getElementById('add-news-form');
     const titleInput = document.getElementById('news-title');
     const textInput = document.getElementById('news-text');
-    const container = document.querySelector('.blog-container');
+    const container = getArticlesContainer();
     const addDialog = document.getElementById('add-news-dialog');
 
     if (!form || !titleInput || !textInput || !container || !addDialog) {
@@ -109,7 +116,7 @@ function setupAddNewsForm() {
 }
 
 function setupDeleteButtons() {
-    const container = document.querySelector('.blog-container');
+    const container = getArticlesContainer();
 
     if (!container) {
         return;

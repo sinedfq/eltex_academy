@@ -39,81 +39,8 @@
             </div>
         </section>
 
-        <div class="blog-container">
-            <div class="blog-article">
-                <button type="button" class="blog-delete">X</button>
-                <img src="source/blank.svg" alt="Главное фото" />
-                <div class="blog-content">
-                    <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
-                    <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-                </div>
-            </div>
-            <div class="blog-article">
-                <button type="button" class="blog-delete">X</button>
-                <img src="source/blank.svg" alt="Фото" />
-                <div class="blog-content">
-                    <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
-                    <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-                </div>
-            </div>
-            <div class="blog-article">
-                <button type="button" class="blog-delete">X</button>
-                <img src="source/blank.svg" alt="Фото" />
-                <div class="blog-content">
-                    <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
-                    <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-                </div>
-            </div>
-            <div class="blog-article">
-                <button type="button" class="blog-delete">X</button>
-                <img src="source/blank.svg" alt="Фото" />
-                <div class="blog-content">
-                    <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
-                    <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-                </div>
-            </div>
-            <div class="blog-article">
-                <button type="button" class="blog-delete">X</button>
-                <img src="source/blank.svg" alt="Фото" />
-                <div class="blog-content">
-                    <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
-                    <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-                </div>
-            </div>
-            <div class="blog-article">
-                <button type="button" class="blog-delete">X</button>
-                <img src="source/blank.svg" alt="Фото" />
-                <div class="blog-content">
-                    <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
-                    <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-                </div>
-            </div>
-            <div class="blog-article">
-                <button type="button" class="blog-delete">X</button>
-                <img src="source/blank.svg" alt="Фото" />
-                <div class="blog-content">
-                    <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
-                    <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-                </div>
-            </div>
-            <div class="blog-article">
-                <button type="button" class="blog-delete">X</button>
-                <img src="source/blank.svg" alt="Фото" />
-                <div class="blog-content">
-                    <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
-                    <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-                </div>
-            </div>
-            <div class="blog-article">
-                <button type="button" class="blog-delete">X</button>
-                <img src="source/blank.svg" alt="Фото" />
-                <div class="blog-content">
-                    <p class="blog-text">Minim anim pariatur magna duis sit et dolor incididunt</p>
-                    <p class="blog-date">Опубликовано: 15 декабря 2024</p>
-                </div>
-            </div>
-        </div>
-
+        <p id="blog-empty-state">Статей нет</p>
+        <div class="blog-container"></div>
         <a href="blog_page.html" class="blog-navigate-button">Дальше</a>
 
         <div class="blog-side-menu">
@@ -135,7 +62,8 @@
                 <h3 class="blog-dialog-title">Добавить новость</h3>
                 <form id="add-news-form" class="blog-dialog-form">
                     <input id="news-title" class="blog-add-input" type="text" placeholder="Заголовок" required />
-                    <textarea id="news-text" class="blog-add-textarea" placeholder="Текст статьи" required></textarea>
+                    <textarea id="news-text" class="blog-add-textarea" placeholder="Текст статьи"
+                        required></textarea>
                     <div class="blog-dialog-actions">
                         <button type="submit" class="blog-add-button">Добавить</button>
                         <button type="button" class="blog-cancel-button" id="close-add-dialog">Отмена</button>
