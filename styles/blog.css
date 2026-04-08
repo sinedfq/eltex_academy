@@ -136,6 +136,12 @@
     color: var(--color-heading);
 }
 
+.blog-article .blog-description {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
 .blog-navigate-button {
     display: flex;
     justify-content: center;

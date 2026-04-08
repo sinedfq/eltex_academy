@@ -1,10 +1,49 @@
+const BLOG_STORAGE_KEY = 'blogArticles';
+const articles = loadArticles();
+
 function getArticlesContainer() {
     return document.querySelector('.blog-container');
 }
 
+function loadArticles() {
+    try {
+        return JSON.parse(localStorage.getItem(BLOG_STORAGE_KEY)) || [];
+    } catch {
+        return [];
+    }
+}
+
+function saveArticles() {
+    localStorage.setItem(BLOG_STORAGE_KEY, JSON.stringify(articles));
+}
+
+function createArticleMarkup(article, index) {
+    return `
+        <div class="blog-article">
+            <button type="button" class="blog-delete" data-index="${index}">X</button>
+            <img src="source/blank.svg" alt="Фото статьи" />
+            <div class="blog-content">
+                <p class="blog-text">${article.title}</p>
+                <p class="blog-description">${article.text}</p>
+                <p class="blog-date">Опубликовано: ${article.date}</p>
+            </div>
+        </div>
+    `;
+}
+
+function renderArticles() {
+    const container = getArticlesContainer();
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = articles.map(createArticleMarkup).join('');
+    calculateArticles();
+}
+
 function calculateArticles() {
-    const articles = document.querySelectorAll('.blog-article');
-    const articlesCount = articles.length;
+    const articlesCount = document.querySelectorAll('.blog-article').length;
     const counter = document.getElementById('article-counter');
     const commentsCounter = document.getElementById('article-comments-counter');
     const emptyState = document.getElementById('blog-empty-state');
@@ -13,17 +52,13 @@ function calculateArticles() {
         emptyState.hidden = articlesCount > 0;
     }
 
-    if (!counter) {
-        return articlesCount;
+    if (counter) {
+        counter.textContent = String(articlesCount);
     }
-
-    counter.textContent = String(articlesCount);
 
     if (commentsCounter) {
         commentsCounter.textContent = '0';
     }
-
-    return articlesCount;
 }
 
 function setupDialogs() {
@@ -45,22 +80,10 @@ function setupDialogs() {
         return;
     }
 
-    openStatsButton.addEventListener('click', () => {
-        calculateArticles();
-        statsDialog.showModal();
-    });
-
-    closeStatsButton.addEventListener('click', () => {
-        statsDialog.close();
-    });
-
-    openAddButton.addEventListener('click', () => {
-        addDialog.showModal();
-    });
-
-    closeAddButton.addEventListener('click', () => {
-        addDialog.close();
-    });
+    openStatsButton.addEventListener('click', () => statsDialog.showModal());
+    closeStatsButton.addEventListener('click', () => statsDialog.close());
+    openAddButton.addEventListener('click', () => addDialog.showModal());
+    closeAddButton.addEventListener('click', () => addDialog.close());
 }
 
 function setupSideMenu() {
@@ -80,10 +103,9 @@ function setupAddNewsForm() {
     const form = document.getElementById('add-news-form');
     const titleInput = document.getElementById('news-title');
     const textInput = document.getElementById('news-text');
-    const container = getArticlesContainer();
     const addDialog = document.getElementById('add-news-dialog');
 
-    if (!form || !titleInput || !textInput || !container || !addDialog) {
+    if (!form || !titleInput || !textInput || !addDialog) {
         return;
     }
 
@@ -97,21 +119,16 @@ function setupAddNewsForm() {
             return;
         }
 
-        const article = document.createElement('div');
-        article.className = 'blog-article';
-        article.innerHTML = `
-            <button type="button" class="blog-delete">X</button>
-            <img src="source/blank.svg" alt="Р¤РѕС‚Рѕ" />
-            <div class="blog-content">
-                <p class="blog-text">${title}</p>
-                <p class="blog-date">Опубликовано: ${new Date().toLocaleDateString('ru-RU')}</p>
-            </div>
-        `;
+        articles.push({
+            title,
+            text,
+            date: new Date().toLocaleDateString('ru-RU')
+        });
 
-        container.append(article);
+        saveArticles();
+        renderArticles();
         form.reset();
         addDialog.close();
-        calculateArticles();
     });
 }
 
@@ -125,21 +142,20 @@ function setupDeleteButtons() {
     container.addEventListener('click', (event) => {
         const deleteButton = event.target.closest('.blog-delete');
 
-        if (!deleteButton || !container.contains(deleteButton)) {
+        if (!deleteButton) {
             return;
         }
 
-        const article = deleteButton.closest('.blog-article');
+        const articleIndex = Number(deleteButton.dataset.index);
 
-        if (article) {
-            article.remove();
-            calculateArticles();
-        }
+        articles.splice(articleIndex, 1);
+        saveArticles();
+        renderArticles();
     });
 }
 
+renderArticles();
 setupDeleteButtons();
-calculateArticles();
 setupSideMenu();
 setupDialogs();
 setupAddNewsForm();
