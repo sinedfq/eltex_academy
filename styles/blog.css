@@ -53,7 +53,14 @@
     gap: 20px;
 }
 
+#blog-empty-state {
+    width: min(100%, 1200px);
+    margin: 0 auto 24px;
+    text-align: center;
+}
+
 .blog-article {
+    position: relative;
     display: grid;
     min-height: 100px;
     border-radius: 10px;
@@ -127,6 +134,12 @@
     font-size: 14px;
     line-height: 1.4;
     color: var(--color-heading);
+}
+
+.blog-article .blog-description {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-text);
 }
 
 .blog-navigate-button {
@@ -413,11 +426,6 @@
 
     .blog-article:first-child img {
         min-height: 240px;
-    }
-
-    .blog-navigate-button {
-        width: 100%;
-        min-width: 0;
     }
 
     .blog-side-menu {
