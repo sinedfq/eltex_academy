@@ -1,0 +1,27 @@
+.skills-description {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.skills-description span {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--color-text);
+    -webkit-box-shadow: var(--shadow-soft);
+    -moz-box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-soft);
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: 0.25s ease-in;
+    cursor: default;
+}
+
+.skills-description span:hover {
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+}

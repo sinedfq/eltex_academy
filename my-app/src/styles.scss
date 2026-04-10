@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import 'reset.css';
+
+:root {
+  --color-text: #323743;
+  --color-heading: #323747;
+  --color-muted: #68686A;
+  --color-accent: #61C15C;
+  --color-title: #1A1B20;
+  --color-border: #BDC1CA;
+  --color-input: #DDE0E7;
+  --color-surface: #FFFFFF;
+  --color-surface-dark: #1E2128;
+  --color-blog-meta: #666666;
+  --color-overlay: rgba(50, 55, 67, 0.8);
+  --shadow-soft: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  line-height: 26px;
+  letter-spacing: -0.01em;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+main {
+  box-sizing: border-box;
+  padding: 0 clamp(16px, 4vw, 48px);
+}
+
+.my-header {
+  font-weight: 700;
+  font-size: clamp(28px, 2vw, 52px);
+  line-height: 63px;
+  color: var(--color-text);
+}
+
+.my-container {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  padding: 5vh 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  animation: fadeIn 2s ease-out;
+}
+
+.myblog-image {
+  position: absolute;
+  left: -10%;
+  top: 58%;
+  transform: translateY(-50%);
+  width: clamp(120px, 16vw, 220px);
+  z-index: 2;
+  pointer-events: none;
+  animation: fadeInDecor 1s ease-out;
+}
+
+.myblog-image.blog {
+  position: static;
+  width: min(100%, 220px);
+  margin-top: 150px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.my-header.blog {
+  font-weight: 800;
+  margin-bottom: 0;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.1;
+  display: block;
+  color: var(--color-text);
+}
+
+@media (max-width: 780px) {
+  .myblog-image {
+    animation: fadeOut 1s ease;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    left: 0;
+    transform: none;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInDecor {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-50% + 20px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

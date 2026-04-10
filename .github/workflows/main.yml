@@ -1,8 +1,8 @@
-name: Custom Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ['lesson_9']
+    branches: ['main']
 
 jobs:
   build:
