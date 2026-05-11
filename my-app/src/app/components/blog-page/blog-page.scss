@@ -1,3 +1,7 @@
+/* ==========================
+   ОСНОВНЫЕ СТИЛИ (Оригинал)
+   ========================== */
+
 .blog-hero {
     width: min(100%, 1200px);
     margin: 0 auto;
@@ -44,88 +48,56 @@
     color: var(--color-muted);
 }
 
-.blog-container {
-    width: min(100%, 1200px);
-    margin: 0 auto;
-    padding-bottom: 32px;
-}
-
-.blog-container {
-    position: relative;
-}
-
-.blog-container-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
 #blog-empty-state {
     width: min(100%, 1200px);
     margin: 0 auto 24px;
     text-align: center;
 }
 
+/* --- СЕТКА СТАТЕЙ --- */
 .blog-container {
     width: min(100%, 1200px);
     margin: 0 auto;
     padding-bottom: 32px;
     position: relative;
-    min-height: 180px;
-}
-
-.blog-container-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
 
-.blog-loader-overlay {
+.blog-container.is-loading {
+    min-height: 180px;
+}
+
+.blog-container.is-loading::before {
+    content: '';
     position: absolute;
     inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     background: rgba(255, 255, 255, 0.78);
-
     border-radius: 10px;
-
-    z-index: 10;
+    z-index: 3;
 }
 
-.blog-loader {
+.blog-container.is-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 42px;
     height: 42px;
-
+    margin-top: -21px;
+    margin-left: -21px;
     border: 4px solid var(--color-input);
     border-top-color: var(--color-accent);
-
     border-radius: 50%;
-
     animation: blogLoaderSpin 0.8s linear infinite;
+    z-index: 4;
 }
 
-.blog-control-disabled {
-    pointer-events: none;
-    opacity: 0.6;
-}
-
-@keyframes blogLoaderSpin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
+/* --- КАРТОЧКА СТАТЬИ --- */
 .blog-article {
     position: relative;
-    display: grid;
+    display: grid; /* ВАЖНО: grid для внутренней разметки */
     min-height: 100px;
     border-radius: 10px;
     overflow: hidden;
@@ -138,6 +110,7 @@
     transform: scale(0.98);
 }
 
+/* ПЕРВАЯ СТАТЬЯ НА ВСЮ ШИРИНУ */
 .blog-article:first-child {
     grid-column: 1 / -1;
     grid-template-columns: minmax(280px, 1.1fr) minmax(280px, 1fr);
@@ -175,6 +148,7 @@
     color: var(--color-heading);
 }
 
+/* ОСТАЛЬНЫЕ СТАТЬИ */
 .blog-article img {
     width: 100%;
     height: 200px;
@@ -206,6 +180,51 @@
     color: var(--color-text);
 }
 
+/* --- КОНТРОЛЫ УДАЛЕНИЯ И РЕДАКТИРОВАНИЯ --- */
+.blog-article-controls {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.blog-article:hover .blog-article-controls {
+    opacity: 1;
+}
+
+.blog-icon-btn,
+.blog-delete {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: background 0.2s;
+    
+    &:hover { background: #f0f0f0; }
+    &.edit { color: var(--color-accent); }
+}
+
+.blog-delete {
+    position: static; /* Переопределяем старый абсолют */
+    opacity: 1;
+    color: #ff4d4d;
+}
+
+/* ==========================
+   ФОРМЫ, КНОПКИ И МОДАЛКИ
+   ========================== */
+
 .blog-navigate-button {
     display: flex;
     justify-content: center;
@@ -224,6 +243,8 @@
     white-space: nowrap;
     color: var(--color-accent);
     transition: 0.2s ease-in;
+    background: transparent;
+    cursor: pointer;
 }
 
 .blog-navigate-button:hover {
@@ -231,20 +252,12 @@
     background-color: var(--color-accent);
 }
 
-.blog-add-input,
-.blog-add-textarea {
-    width: 100%;
-    padding: 12px;
-    box-sizing: border-box;
-    border: 1px solid var(--color-muted);
-    border-radius: 5px;
-    font-size: 14px;
+.blog-control-disabled {
+    pointer-events: none;
+    opacity: 0.6;
 }
 
-.blog-add-textarea {
-    min-height: 160px;
-}
-
+/* Боковое меню */
 .blog-side-menu {
     position: fixed;
     right: -1px;
@@ -276,6 +289,7 @@
     font-size: 16px;
     line-height: 1.4;
     text-align: center;
+    cursor: pointer;
     transition: transform 0.2s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
 }
 
@@ -305,6 +319,7 @@
     font-size: 34px;
     line-height: 1;
     color: var(--color-surface);
+    cursor: pointer;
     transition: transform 0.2s ease-in;
 }
 
@@ -312,104 +327,7 @@
     transform: translateY(-2px);
 }
 
-.blog-add-button {
-    padding: 14px 28px;
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 260px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 1px solid var(--color-accent);
-    background-color: var(--color-accent);
-    border-radius: 5px;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 26px;
-    white-space: nowrap;
-    color: var(--color-surface);
-    transition: 0.2s ease-in;
-}
-
-.blog-add-button:hover {
-    transform: scale(0.95);
-}
-
-.blog-cancel-button {
-    padding: 14px 28px;
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 260px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 1px solid var(--color-muted);
-    background-color: transparent;
-    border-radius: 5px;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 26px;
-    white-space: nowrap;
-    color: var(--color-muted);
-    transition: 0.2s ease-in;
-}
-
-.blog-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.article-counter {
-    margin: 0;
-    min-height: 140px;
-    padding: 18px 20px;
-    border-radius: 14px;
-    -webkit-box-shadow: var(--shadow-soft);
-    -moz-box-shadow: var(--shadow-soft);
-    box-shadow: var(--shadow-soft);
-    background-color: var(--color-surface);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.article-counter-label {
-    margin: 0;
-    font-size: clamp(20px, 1.8vw, 32px);
-    line-height: 1.15;
-    color: #394150;
-}
-
-.article-counter-value {
-    margin: 0;
-    font-weight: 700;
-    font-size: clamp(40px, 3vw, 58px);
-    line-height: 1;
-    color: #394150;
-}
-
-.blog-cancel-button:hover {
-    transform: scale(0.95);
-    background-color: var(--color-muted);
-    color: var(--color-surface);
-}
-
-.blog-delete {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.blog-article:hover .blog-delete {
-    opacity: 1;
-}
-
+/* Модальные окна */
 #add-news-dialog,
 #article-dialog {
     margin: auto auto;
@@ -444,21 +362,136 @@
     gap: 16px;
 }
 
+/* Стили формы и валидации */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.blog-add-input,
+.blog-add-textarea {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-muted);
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.blog-add-textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+.blog-add-input.invalid, 
+.blog-add-textarea.invalid {
+    border: 1px solid #ff4d4d !important;
+}
+
+.error-msg {
+    color: #ff4d4d;
+    font-size: 11px;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
 .blog-dialog-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
 }
 
-@keyframes blogLoaderSpin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
+.blog-add-button,
+.blog-cancel-button {
+    padding: 14px 28px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 260px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.2s ease-in;
 }
+
+.blog-add-button {
+    border: 1px solid var(--color-accent);
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+}
+
+.blog-add-button:hover:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.blog-add-button:disabled {
+    background-color: var(--color-muted);
+    border-color: var(--color-muted);
+    cursor: not-allowed;
+}
+
+.blog-cancel-button {
+    border: 1px solid var(--color-muted);
+    background-color: transparent;
+    color: var(--color-muted);
+}
+
+.blog-cancel-button:hover {
+    transform: scale(0.95);
+    background-color: var(--color-muted);
+    color: var(--color-surface);
+}
+
+/* Статистика */
+.blog-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.article-counter {
+    margin: 0;
+    min-height: 140px;
+    padding: 18px 20px;
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    background-color: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.article-counter-label {
+    margin: 0;
+    font-size: clamp(20px, 1.8vw, 32px);
+    line-height: 1.15;
+    color: #394150;
+}
+
+.article-counter-value {
+    margin: 0;
+    font-weight: 700;
+    font-size: clamp(40px, 3vw, 58px);
+    line-height: 1;
+    color: #394150;
+}
+
+@keyframes blogLoaderSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ==========================
+   АДАПТИВНОСТЬ (Оригинал)
+   ========================== */
 
 @media (max-width: 900px) {
     .blog-hero {
@@ -514,10 +547,6 @@
 
     .blog-stats-grid {
         grid-template-columns: 1fr;
-    }
-
-    .blog-stats-shell {
-        padding: 20px;
     }
 
     .blog-add-button,

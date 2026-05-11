@@ -2,13 +2,13 @@
   <article class="article" *ngFor="let article of articles(); trackBy: trackById">
     <div class="article-content">
       <h4 class="article-header">{{ article.title }}</h4>
-      <p class="article-pub-date">Опубликовано: {{ article.date }}</p>
+      <p class="article-pub-date">Р”Р°С‚Р°: {{ article.date }}</p>
       <p class="article-description">{{ article.description }}</p>
     </div>
     <div class="article-image">
-      <img [src]="article.image" [alt]="article.title" />
+      <img src="images/blank.svg" alt="Р¤РѕС‚Рѕ СЃС‚Р°С‚СЊРё" />
     </div>
   </article>
 
-  <a routerLink="/blog" class="article-navigate-button">Посмотреть все статьи</a>
+  <a routerLink="/blog" class="article-navigate-button">Р”Р°Р»СЊС€Рµ</a>
 </div>
