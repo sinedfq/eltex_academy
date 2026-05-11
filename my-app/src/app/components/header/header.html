@@ -1,11 +1,11 @@
 <header>
     <nav>
         <div class="header-wrapper">
-            <a class="header-name" href="index.html">Denis-Folio</a>
+            <a class="header-name" routerLink="/">Denis-Folio</a>
             <div class="header-nav">
-                <a href="index.html" class="header-button active">About</a>
-                <a href="blog_page.html" class="header-button">Blog</a>
-                <a class="header-button" href="#contacts">Contact</a>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="header-button">About</a>
+                <a routerLink="/blog" routerLinkActive="active" class="header-button">Blog</a>
+                <a routerLink="/" fragment="contacts" class="header-button">Contact</a>
             </div>
         </div>
     </nav>
