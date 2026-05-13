@@ -1,117 +1,166 @@
-import { Component, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  PLATFORM_ID,
+  signal
+} from '@angular/core';
 
-interface Article {
-  id: number;
-  title: string;
-  text: string;
-  date: string;
-}
+import {
+  CommonModule,
+  isPlatformBrowser
+} from '@angular/common';
+
+import { Article } from './models/article.model';
+
+import {ArticleCardComponent} from './components/article-card/article-card';
+import { ArticleDialogComponent } from './components/article-dialog/article-dialog';
+import { StatsDialogComponent } from './components/stats-dialog/stats-dialog';
 
 @Component({
   selector: 'app-blog-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ArticleCardComponent,
+    ArticleDialogComponent,
+    StatsDialogComponent
+  ],
   templateUrl: './blog-page.html',
-  styleUrls: ['./blog-page.scss']
+  styleUrls: ['./blog-page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BlogPageComponent implements OnInit {
-  private readonly STORAGE_KEY = 'blogArticles';
-  
-  @ViewChild('articleDialog') articleDialog!: ElementRef<HTMLDialogElement>;
-  @ViewChild('statsDialog') statsDialog!: ElementRef<HTMLDialogElement>;
+export class BlogPageComponent {
 
-  articles: Article[] = [];
-  isLoading = false; // По умолчанию false
-  isMenuOpen = false;
-  
-  articleForm: FormGroup;
-  isEditMode = false;
-  currentEditingId: number | null = null;
+  private readonly STORAGE_KEY = 'blogArticles';
+
+  protected articles = signal<Article[]>([]);
+  protected isLoading = signal(false);
+
+  protected isMenuOpen = signal(false);
+
+  protected isArticleDialogOpen = signal(false);
+  protected isStatsDialogOpen = signal(false);
+
+  protected editingArticle = signal<Article | null>(null);
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private fb: FormBuilder
-  ) {
-    this.articleForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(25)]],
-      text: ['', [Validators.required]]
-    });
-  }
+    @Inject(PLATFORM_ID)
+    private platformId: Object
+  ) {}
 
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      const saved = localStorage.getItem(this.STORAGE_KEY);
-      this.articles = saved ? JSON.parse(saved) : [];
-      this.runLoader();
+  async ngOnInit(): Promise<void> {
+
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
     }
+
+    this.initializeBlog();
   }
 
-  private runLoader() {
-    // ВРЕМЕННО ЗАКОММЕНТИРОВАНО (бесконечная загрузка / ожидание отключено)
-    // this.isLoading = true;
-    // setTimeout(() => this.isLoading = false, 1200);
-    this.isLoading = false; 
+  protected openAddMode(): void {
+    this.editingArticle.set(null);
+    this.isArticleDialogOpen.set(true);
   }
 
-  // --- Методы формы ---
-
-  openAddMode() {
-    this.isEditMode = false;
-    this.currentEditingId = null;
-    this.articleForm.reset();
-    this.articleDialog.nativeElement.showModal();
+  protected openEditMode(article: Article): void {
+    this.editingArticle.set(article);
+    this.isArticleDialogOpen.set(true);
   }
 
-  openEditMode(article: Article) {
-    this.isEditMode = true;
-    this.currentEditingId = article.id;
-    this.articleForm.patchValue({
-      title: article.title,
-      text: article.text
-    });
-    this.articleDialog.nativeElement.showModal();
+  protected closeArticleDialog(): void {
+    this.isArticleDialogOpen.set(false);
   }
 
-  saveArticle() {
-    if (this.articleForm.invalid) return;
+  protected openStatsDialog(): void {
+    this.isStatsDialogOpen.set(true);
+  }
 
-    if (this.isEditMode) {
-      const index = this.articles.findIndex(a => a.id === this.currentEditingId);
-      if (index !== -1) {
-        this.articles[index] = { 
-          ...this.articles[index], 
-          ...this.articleForm.value 
-        };
-      }
+  protected closeStatsDialog(): void {
+    this.isStatsDialogOpen.set(false);
+  }
+
+  protected toggleMenu(): void {
+    this.isMenuOpen.update(v => !v);
+  }
+
+  protected saveArticle(
+    articleData: Omit<Article, 'id' | 'date'>
+  ): void {
+
+    const currentArticle = this.editingArticle();
+
+    if (currentArticle) {
+
+      this.articles.update(articles =>
+        articles.map(article =>
+          article.id === currentArticle.id
+            ? {
+                ...article,
+                ...articleData
+              }
+            : article
+        )
+      );
+
     } else {
-      this.articles.unshift({
+
+      const newArticle: Article = {
         id: Date.now(),
-        ...this.articleForm.value,
+        ...articleData,
         date: new Date().toLocaleDateString('ru-RU')
-      });
+      };
+
+      this.articles.update(articles => [
+        newArticle,
+        ...articles
+      ]);
     }
 
     this.syncData();
+
     this.closeArticleDialog();
   }
 
-  deleteArticle(id: number) {
-    this.articles = this.articles.filter(a => a.id !== id);
+  protected deleteArticle(id: number): void {
+
+    this.articles.update(articles =>
+      articles.filter(article => article.id !== id)
+    );
+
     this.syncData();
   }
 
-  private syncData() {
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.articles));
-    }
+  private async initializeBlog(): Promise<void> {
+
+    this.isLoading.set(true);
+
+    const saved =
+      localStorage.getItem(this.STORAGE_KEY);
+
+    this.articles.set(
+      saved
+        ? JSON.parse(saved)
+        : []
+    );
+
+    await this.wait(1200);
+
+    this.isLoading.set(false);
   }
 
-  // --- UI ---
+  private syncData(): void {
 
-  toggleMenu() { this.isMenuOpen = !this.isMenuOpen; }
-  closeArticleDialog() { this.articleDialog.nativeElement.close(); }
-  openStatsDialog() { this.statsDialog.nativeElement.showModal(); }
-  closeStatsDialog() { this.statsDialog.nativeElement.close(); }
+    localStorage.setItem(
+      this.STORAGE_KEY,
+      JSON.stringify(this.articles())
+    );
+  }
+
+  private wait(ms: number): Promise<void> {
+
+    return new Promise(resolve => {
+      setTimeout(resolve, ms);
+    });
+  }
 }

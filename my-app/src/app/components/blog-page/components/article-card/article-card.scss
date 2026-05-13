@@ -1,0 +1,169 @@
+:host {
+    display: block;
+}
+
+:host(:first-child) {
+    grid-column: 1 / -1;
+}
+
+/* ==========================
+   CARD
+   ========================== */
+
+.blog-article {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    background-color: var(--color-surface);
+
+    box-shadow: var(--shadow-soft);
+
+    transition: 0.5s ease;
+}
+
+.blog-article:hover {
+    transform: scale(0.98);
+}
+
+/* ==========================
+   IMAGE
+   ========================== */
+
+.blog-article img {
+    width: 100%;
+    height: 220px;
+
+    object-fit: cover;
+
+    display: block;
+
+    flex-shrink: 0;
+}
+
+/* ==========================
+   CONTENT
+   ========================== */
+
+.blog-content {
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.blog-text {
+    margin: 0;
+
+    font-size: 16px;
+    line-height: 1.4;
+
+    color: var(--color-heading);
+}
+
+.blog-date {
+    margin: 0;
+
+    font-size: 12px;
+
+    color: var(--color-blog-meta);
+}
+
+/* ==========================
+   CONTROLS
+   ========================== */
+
+.blog-article-controls {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    z-index: 10;
+
+    display: flex;
+    gap: 8px;
+
+    opacity: 0;
+
+    transition: opacity 0.2s ease;
+}
+
+.blog-article:hover .blog-article-controls {
+    opacity: 1;
+}
+
+.blog-icon-btn,
+.blog-delete {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 6px;
+    border: none;
+
+    background: var(--color-surface);
+
+    box-shadow: var(--shadow-soft);
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+}
+
+.blog-icon-btn.edit {
+    color: var(--color-accent);
+}
+
+.blog-delete {
+    color: #ff4d4d;
+}
+
+/* ==========================
+   FIRST ARTICLE
+   ========================== */
+
+:host(:first-child) .blog-article {
+    display: grid;
+
+    grid-template-columns:
+        minmax(280px, 1.1fr)
+        minmax(280px, 1fr);
+}
+
+:host(:first-child) img {
+    height: 100%;
+    min-height: 320px;
+}
+
+:host(:first-child) .blog-content {
+    justify-content: center;
+}
+
+:host(:first-child) .blog-text {
+    font-size: 24px;
+}
+
+/* ==========================
+   ADAPTIVE
+   ========================== */
+
+@media (max-width: 900px) {
+
+    :host(:first-child) .blog-article {
+        grid-template-columns: 1fr;
+    }
+
+    :host(:first-child) img {
+        min-height: 240px;
+    }
+}
