@@ -1,7 +1,3 @@
-/* ==========================
-   HERO
-   ========================== */
-
 .blog-hero {
     width: min(100%, 1200px);
     margin: 0 auto;
@@ -48,19 +44,11 @@
     color: var(--color-muted);
 }
 
-/* ==========================
-   EMPTY
-   ========================== */
-
 #blog-empty-state {
     width: min(100%, 1200px);
     margin: 0 auto 24px;
     text-align: center;
 }
-
-/* ==========================
-   GRID
-   ========================== */
 
 .blog-container {
     width: min(100%, 1200px);
@@ -72,9 +60,6 @@
     gap: 20px;
 }
 
-/* ==========================
-   BUTTON
-   ========================== */
 
 .blog-navigate-button {
     display: flex;
@@ -103,9 +88,6 @@
     background-color: var(--color-accent);
 }
 
-/* ==========================
-   SIDE MENU
-   ========================== */
 
 .blog-side-menu {
     position: fixed;
@@ -178,9 +160,6 @@
     transform: translateY(-2px);
 }
 
-/* ==========================
-   LOADER
-   ========================== */
 
 .blog-loader {
     width: 48px;
@@ -202,10 +181,6 @@
         transform: rotate(360deg);
     }
 }
-
-/* ==========================
-   ADAPTIVE
-   ========================== */
 
 @media (max-width: 900px) {
     .blog-hero {
