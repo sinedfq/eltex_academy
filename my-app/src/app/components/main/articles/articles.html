@@ -1,54 +1,14 @@
 <div class="article-container">
-    <div class="article">
-        <div class="article-content">
-            <h4 class="article-header">Как создать адаптивный дизайн за 30 минут</h4>
-            <p class="article-pub-date">Опубликовано: 15 декабря 2024</p>
-            <p class="article-description">
-                В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково
-                хорошо
-                выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах
-                кода,
-                которые можно использовать прямо сейчас.
-            </p>
-        </div>
-        <div class="article-image">
-            <img src="images/blank.svg" />
-        </div>
+  <article class="article" *ngFor="let article of articles(); trackBy: trackById">
+    <div class="article-content">
+      <h4 class="article-header">{{ article.title }}</h4>
+      <p class="article-pub-date">Дата: {{ article.date }}</p>
+      <p class="article-description">{{ article.description }}</p>
     </div>
-
-    <div class="article">
-        <div class="article-content">
-            <h4 class="article-header">Как создать адаптивный дизайн за 30 минут</h4>
-            <span class="article-pub-date">Опубликовано: 15 декабря 2024</span>
-            <p class="article-description">
-                В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково
-                хорошо
-                выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах
-                кода,
-                которые можно использовать прямо сейчас.
-            </p>
-        </div>
-        <div class="article-image">
-            <img src="images/blank.svg" />
-        </div>
+    <div class="article-image">
+      <img src="images/blank.svg" alt="Фото статьи" />
     </div>
+  </article>
 
-    <div class="article">
-        <div class="article-content">
-            <h4 class="article-header">Как создать адаптивный дизайн за 30 минут</h4>
-            <span class="article-pub-date">Опубликовано: 15 декабря 2024</span>
-            <p class="article-description">
-                В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково
-                хорошо
-                выглядят на всех устройствах. Вы узнаете о медиа-запросах, гибких сетках и практических примерах
-                кода,
-                которые можно использовать прямо сейчас.
-            </p>
-        </div>
-        <div class="article-image">
-            <img src="images/blank.svg" />
-        </div>
-    </div>
-    <a href="blog_page.html" class="article-navigate-button">Посмотреть все статьи</a>
-
+  <a routerLink="/blog" class="article-navigate-button">Дальше</a>
 </div>

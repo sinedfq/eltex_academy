@@ -1,0 +1,205 @@
+/* ==========================
+   DIALOG
+   ========================== */
+
+.blog-dialog {
+    margin: auto auto;
+    width: min(100%, 720px);
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+}
+
+.blog-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.blog-dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.blog-dialog-title {
+    margin: 0;
+    font-size: clamp(28px, 3vw, 46px);
+    line-height: 1.2;
+    color: #000000;
+}
+
+/* ==========================
+   FORM
+   ========================== */
+
+.blog-dialog-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.blog-add-input,
+.blog-add-textarea {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-muted);
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.blog-add-textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+.blog-add-input.invalid,
+.blog-add-textarea.invalid {
+    border: 1px solid #ff4d4d !important;
+}
+
+.error-msg {
+    color: #ff4d4d;
+    font-size: 11px;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+/* ==========================
+   ACTIONS
+   ========================== */
+
+.blog-dialog-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.blog-add-button,
+.blog-cancel-button {
+    padding: 14px 28px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 260px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    border-radius: 5px;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.blog-add-button {
+    border: 1px solid var(--color-accent);
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+}
+
+.blog-add-button:hover:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.blog-add-button:disabled {
+    background-color: var(--color-muted);
+    border-color: var(--color-muted);
+    cursor: not-allowed;
+}
+
+.blog-cancel-button {
+    border: 1px solid var(--color-muted);
+    background-color: transparent;
+    color: var(--color-muted);
+}
+
+.blog-cancel-button:hover {
+    transform: scale(0.95);
+    background-color: var(--color-muted);
+    color: var(--color-surface);
+}
+
+/* ==========================
+   ADAPTIVE
+   ========================== */
+
+@media (max-width: 640px) {
+    .blog-dialog-actions {
+        flex-direction: column;
+    }
+
+    .blog-add-button,
+    .blog-cancel-button {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+    }
+}
+
+.blog-dialog {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    margin: 0;
+
+    width: min(100%, 720px);
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 12px;
+
+    box-shadow: var(--shadow-soft);
+
+    z-index: 1000;
+}
+
+.blog-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.blog-dialog-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+}
+
+.blog-dialog {
+    margin: 0;
+
+    width: min(100%, 720px);
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 12px;
+
+    box-shadow: var(--shadow-soft);
+}

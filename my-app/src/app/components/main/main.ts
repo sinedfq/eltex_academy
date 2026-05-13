@@ -10,6 +10,7 @@ import { Hobby } from './hobby/hobby';
 
 @Component({
   selector: 'app-main',
+  standalone: true,
   imports: [About, Career, Education, Courses, Skills, Achievements, Articles, Hobby],
   templateUrl: './main.html',
   styleUrl: './main.scss',

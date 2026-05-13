@@ -1,0 +1,45 @@
+<div class="blog-dialog-overlay">
+<dialog class="blog-dialog" open>
+
+  <div class="blog-dialog-content">
+
+    <h3 class="my-header">
+      Статистика страницы
+    </h3>
+
+    <div class="blog-stats-grid">
+
+      <div class="article-counter">
+        <p class="article-counter-label">
+          Всего статей:
+        </p>
+
+        <p class="article-counter-value">
+          {{ articlesCount() }}
+        </p>
+      </div>
+
+      <div class="article-counter">
+        <p class="article-counter-label">
+          Комментарии:
+        </p>
+
+        <p class="article-counter-value">
+          0
+        </p>
+      </div>
+
+    </div>
+
+    <button
+      type="button"
+      class="blog-cancel-button"
+      (click)="close()"
+    >
+      Закрыть
+    </button>
+
+  </div>
+
+</dialog>
+</div>

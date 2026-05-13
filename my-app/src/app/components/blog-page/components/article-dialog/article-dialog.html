@@ -1,0 +1,60 @@
+<div class="blog-dialog-overlay">
+
+  <dialog class="blog-dialog" open>
+
+    <div class="blog-dialog-content">
+
+      <h3 class="blog-dialog-title">
+        {{ formTitle() }}
+      </h3>
+
+      <form [formGroup]="articleForm" (ngSubmit)="submit()" class="blog-dialog-form">
+
+        <div class="form-group">
+
+          <input formControlName="title" class="blog-add-input" [class.invalid]="hasError('title')"
+            placeholder="Заголовок" />
+
+          @if (hasError('title')) {
+
+          @for (
+          error of getControlErrors('title');
+          track $index
+          ) {
+
+          <small class="error-msg">
+            {{ error }}
+          </small>
+
+          }
+
+          }
+
+        </div>
+
+        <div class="form-group">
+
+          <textarea formControlName="text" class="blog-add-textarea" [class.invalid]="hasError('text')"
+            placeholder="Текст статьи"></textarea>
+
+        </div>
+
+        <div class="blog-dialog-actions">
+
+          <button type="submit" class="blog-add-button" [disabled]="articleForm.invalid">
+            {{ saveButtonTitle() }}
+          </button>
+
+          <button type="button" class="blog-cancel-button" (click)="close()">
+            Отмена
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </dialog>
+
+</div>

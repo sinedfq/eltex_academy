@@ -1,0 +1,129 @@
+<main>
+
+  <section class="blog-hero">
+
+    <div class="blog-hero-content">
+
+      <p class="blog-hero-kicker">
+        Blog
+      </p>
+
+      <h1 class="my-header blog">
+        Статьи
+      </h1>
+
+      <p class="blog-hero-description">
+        Подборка заметок о фронтенде,
+        интерфейсах и процессе разработки.
+      </p>
+
+    </div>
+
+    <div class="blog-hero-art">
+
+      <span class="blog-hero-note">
+        frontend notes
+      </span>
+
+      <!-- ИСПРАВИТЬ ПУТЬ -->
+      <img
+        class="myblog-image blog"
+        src="/images/myblogs.svg"
+        alt="Декоративная иллюстрация блога"
+      />
+
+    </div>
+
+  </section>
+
+  @if (isLoading()) {
+
+    <div class="blog-loader">
+    </div>
+
+  } @else {
+
+    @if (articles().length === 0) {
+
+      <p id="blog-empty-state">
+        Статей нет
+      </p>
+
+    }
+
+    <div class="blog-container">
+
+      @for (
+        article of articles();
+        track article.id
+      ) {
+
+        <app-article-card
+          [article]="article"
+          (edit)="openEditMode($event)"
+          (remove)="deleteArticle($event)"
+        />
+
+      }
+
+    </div>
+
+  }
+
+  <button class="blog-navigate-button">
+    Дальше
+  </button>
+
+  <div
+    class="blog-side-menu"
+    [class.is-open]="isMenuOpen()"
+  >
+
+    <div class="blog-side-menu-actions">
+
+      <button
+        class="blog-side-action blog-side-action-primary"
+        (click)="openAddMode()"
+      >
+        Добавить новость
+      </button>
+
+      <button
+        class="blog-side-action blog-side-action-secondary"
+        (click)="openStatsDialog()"
+      >
+        Посмотреть статистику
+      </button>
+
+    </div>
+
+    <button
+      type="button"
+      class="blog-side-toggle"
+      (click)="toggleMenu()"
+    >
+      {{ isMenuOpen() ? '×' : '+' }}
+    </button>
+
+  </div>
+
+  @if (isArticleDialogOpen()) {
+
+    <app-article-dialog
+      [articleToEdit]="editingArticle()"
+      (closeDialog)="closeArticleDialog()"
+      (save)="saveArticle($event)"
+    />
+
+  }
+
+  @if (isStatsDialogOpen()) {
+
+    <app-stats-dialog
+      [articlesCount]="articles().length"
+      (closeDialog)="closeStatsDialog()"
+    />
+
+  }
+
+</main>
