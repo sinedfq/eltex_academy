@@ -25,10 +25,9 @@
         frontend notes
       </span>
 
-      <!-- ИСПРАВИТЬ ПУТЬ -->
       <img
         class="myblog-image blog"
-        src="/images/myblogs.svg"
+        src="images/myblogs.svg"
         alt="Декоративная иллюстрация блога"
       />
 
@@ -43,7 +42,7 @@
 
   } @else {
 
-    @if (articles().length === 0) {
+    @if (store.articles().length === 0) {
 
       <p id="blog-empty-state">
         Статей нет
@@ -54,7 +53,7 @@
     <div class="blog-container">
 
       @for (
-        article of articles();
+        article of store.articles();
         track article.id
       ) {
 
@@ -68,11 +67,29 @@
 
     </div>
 
-  }
+    <div class="blog-pagination">
 
-  <button class="blog-navigate-button">
-    Дальше
-  </button>
+      <button
+        class="blog-navigate-button"
+        (click)="prevPage()"
+      >
+        Назад
+      </button>
+
+      <span class="blog-page-number">
+        {{ store.activePage() }}
+      </span>
+
+      <button
+        class="blog-navigate-button"
+        (click)="nextPage()"
+      >
+        Вперед
+      </button>
+
+    </div>
+
+  }
 
   <div
     class="blog-side-menu"
@@ -110,9 +127,13 @@
   @if (isArticleDialogOpen()) {
 
     <app-article-dialog
+
       [articleToEdit]="editingArticle()"
+
       (closeDialog)="closeArticleDialog()"
+
       (save)="saveArticle($event)"
+
     />
 
   }
@@ -120,8 +141,11 @@
   @if (isStatsDialogOpen()) {
 
     <app-stats-dialog
-      [articlesCount]="articles().length"
+
+      [articlesCount]="store.totalCount()"
+
       (closeDialog)="closeStatsDialog()"
+
     />
 
   }

@@ -1,7 +1,3 @@
-/* ==========================
-   DIALOG
-   ========================== */
-
 .blog-dialog {
     margin: auto auto;
     width: min(100%, 720px);
@@ -27,10 +23,6 @@
     line-height: 1.2;
     color: #000000;
 }
-
-/* ==========================
-   FORM
-   ========================== */
 
 .blog-dialog-form {
     display: flex;
@@ -71,10 +63,6 @@
     font-weight: 500;
     margin-left: 4px;
 }
-
-/* ==========================
-   ACTIONS
-   ========================== */
 
 .blog-dialog-actions {
     display: flex;
@@ -134,10 +122,6 @@
     background-color: var(--color-muted);
     color: var(--color-surface);
 }
-
-/* ==========================
-   ADAPTIVE
-   ========================== */
 
 @media (max-width: 640px) {
     .blog-dialog-actions {
