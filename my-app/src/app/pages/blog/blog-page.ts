@@ -9,21 +9,29 @@ import {
 } from '@angular/core';
 
 import {
+  Title
+} from '@angular/platform-browser';
+
+import {
+  MatIconModule
+} from '@angular/material/icon';
+
+import {
   CommonModule,
   isPlatformBrowser
 } from '@angular/common';
 
 import { ArticleCardComponent }
-from './components/article-card/article-card';
+  from './components/article-card/article-card';
 
 import { ArticleDialogComponent }
-from './components/article-dialog/article-dialog';
+  from './components/article-dialog/article-dialog';
 
 import { StatsDialogComponent }
-from './components/stats-dialog/stats-dialog';
+  from './components/stats-dialog/stats-dialog';
 
 import { Article }
-from '../../core/models/article.model';
+  from '../../core/models/article.model';
 
 import {
   ARTICLES_SERVICE_TOKEN
@@ -41,7 +49,8 @@ import {
     CommonModule,
     ArticleCardComponent,
     ArticleDialogComponent,
-    StatsDialogComponent
+    StatsDialogComponent,
+    MatIconModule
   ],
 
   templateUrl: './blog-page.html',
@@ -52,7 +61,10 @@ import {
     ChangeDetectionStrategy.OnPush
 })
 export class BlogPageComponent
-implements OnInit {
+  implements OnInit {
+
+  private readonly title =
+    inject(Title);
 
   protected isLoading =
     signal(false);
@@ -93,7 +105,11 @@ implements OnInit {
       return;
     }
 
-    await this.initializeBlog();
+    this.title.setTitle(
+      'Блог'
+    );
+
+    this.initializeBlog();
   }
 
   protected openAddMode():
@@ -150,7 +166,7 @@ implements OnInit {
 
   protected saveArticle(
     articleData:
-    Omit<Article, 'id' | 'date'>
+      Omit<Article, 'id' | 'date'>
   ): void {
 
     const currentArticle =

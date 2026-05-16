@@ -1,16 +1,54 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 @import 'reset.css';
 
 :root {
   --color-text: #323743;
   --color-heading: #323747;
-  --color-muted: #68686A;
-  --color-accent: #61C15C;
-  --color-title: #1A1B20;
-  --color-border: #BDC1CA;
-  --color-input: #DDE0E7;
-  --color-surface: #FFFFFF;
-  --color-surface-dark: #1E2128;
+  --color-muted: #68686a;
+  --color-accent: #61c15c;
+  --color-title: #1a1b20;
+  --color-border: #bdc1ca;
+  --color-input: #dde0e7;
+  --color-surface: #ffffff;
+  --color-surface-dark: #1e2128;
   --color-blog-meta: #666666;
   --color-overlay: rgba(50, 55, 67, 0.8);
   --shadow-soft: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
@@ -118,7 +156,6 @@ main {
     transform: translateY(-50%);
   }
 }
-
 
 @keyframes fadeIn {
   from {
