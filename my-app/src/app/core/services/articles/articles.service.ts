@@ -7,8 +7,17 @@ import {
   of
 } from 'rxjs';
 
+import {
+  Inject,
+  PLATFORM_ID
+} from '@angular/core';
+
+import {
+  isPlatformBrowser
+} from '@angular/common';
+
 import { Article }
-from '../../models/article.model';
+  from '../../models/article.model';
 
 import {
   ArticlesServiceInterface
@@ -18,7 +27,12 @@ import {
   providedIn: 'root'
 })
 export class ArticlesService
-implements ArticlesServiceInterface {
+  implements ArticlesServiceInterface {
+
+  constructor(
+    @Inject(PLATFORM_ID)
+    private platformId: Object
+  ) { }
 
   private readonly STORAGE_KEY =
     'blogArticles';
@@ -53,7 +67,7 @@ implements ArticlesServiceInterface {
 
   public addArticle(
     articleData:
-    Omit<Article, 'id' | 'date'>
+      Omit<Article, 'id' | 'date'>
   ): Observable<Article[]> {
 
     const articles =
@@ -76,7 +90,7 @@ implements ArticlesServiceInterface {
   public updateArticle(
     id: number,
     articleData:
-    Omit<Article, 'id' | 'date'>
+      Omit<Article, 'id' | 'date'>
   ): Observable<Article[]> {
 
     const updated =
@@ -84,9 +98,9 @@ implements ArticlesServiceInterface {
         article =>
           article.id === id
             ? {
-                ...article,
-                ...articleData
-              }
+              ...article,
+              ...articleData
+            }
             : article
       );
 
@@ -111,8 +125,16 @@ implements ArticlesServiceInterface {
     return of(filtered);
   }
 
-  private getAllArticles():
-    Article[] {
+  private getAllArticles(): Article[] {
+
+    if (
+      !isPlatformBrowser(
+        this.platformId
+      )
+    ) {
+
+      return [];
+    }
 
     const data =
       localStorage.getItem(
@@ -127,6 +149,14 @@ implements ArticlesServiceInterface {
   private saveArticles(
     articles: Article[]
   ): void {
+
+    if (
+      !isPlatformBrowser(
+        this.platformId
+      )
+    ) {
+      return;
+    }
 
     localStorage.setItem(
       this.STORAGE_KEY,

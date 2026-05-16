@@ -1,0 +1,139 @@
+@if (store.article(); as article) {
+
+<div class="article-page">
+
+    <img class="article-image" src="images/blank.svg" alt="Article image" />
+
+    <div class="article-content">
+
+        <h1 class="article-title">
+            {{ article.title }}
+        </h1>
+
+        <p class="article-text">
+            {{ article.text }}
+        </p>
+
+        <div class="article-rating">
+
+            <button mat-icon-button (click)="changeRating(-1)">
+
+                <mat-icon>
+                    thumb_down
+                </mat-icon>
+
+            </button>
+
+            <span>
+                Рейтинг:
+                {{ article.rating }}
+            </span>
+
+            <button mat-icon-button (click)="changeRating(1)">
+
+                <mat-icon>
+                    thumb_up
+                </mat-icon>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <section class="comments-section">
+
+        <h2 class="comments-title">
+            Комментарии
+        </h2>
+
+
+
+        <div class="comments-list">
+
+            @for (
+            comment of article.comments;
+            track comment.id
+            ) {
+
+            <mat-card class="comment-card">
+
+                <mat-card-title>
+                    {{ comment.username }}
+                </mat-card-title>
+
+                <mat-card-subtitle>
+                    {{ comment.date }}
+                </mat-card-subtitle>
+
+                <mat-card-content>
+
+                    <p>
+                        {{ comment.text }}
+                    </p>
+
+                </mat-card-content>
+
+                <div class="comment-rating">
+
+                    <button mat-icon-button (click)="changeCommentRating(comment.id, -1)">
+
+                        <mat-icon>
+                            thumb_down
+                        </mat-icon>
+
+                    </button>
+
+                    <span>
+                        {{ comment.rating }}
+                    </span>
+
+                    <button mat-icon-button (click)="changeCommentRating(comment.id, 1)">
+
+                        <mat-icon>
+                            thumb_up
+                        </mat-icon>
+
+                    </button>
+
+                </div>
+
+            </mat-card>
+
+            }
+
+        </div>
+
+        <form class="comment-form" [formGroup]="commentForm" (ngSubmit)="addComment()">
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    Ваше имя
+                </mat-label>
+
+                <input matInput formControlName="username" />
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>
+                    Комментарий
+                </mat-label>
+
+                <textarea matInput rows="4" formControlName="text">
+                </textarea>
+
+            </mat-form-field>
+
+            <button mat-raised-button type="submit">
+                Отправить
+            </button>
+
+        </form>
+    </section>
+
+</div>
+
+}

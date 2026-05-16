@@ -1,14 +1,56 @@
-<div class="article-container">
-  <article class="article" *ngFor="let article of articles(); trackBy: trackById">
-    <div class="article-content">
-      <h4 class="article-header">{{ article.title }}</h4>
-      <p class="article-pub-date">Дата: {{ article.date }}</p>
-      <p class="article-description">{{ article.description }}</p>
-    </div>
-    <div class="article-image">
-      <img src="images/blank.svg" alt="Фото статьи" />
-    </div>
-  </article>
+@if (latestArticles().length) {
 
-  <a routerLink="/blog" class="article-navigate-button">Дальше</a>
-</div>
+  <section class="article-container">
+
+    @for (
+      article of latestArticles();
+      track article.id
+    ) {
+
+      <a
+        class="article"
+        [routerLink]="[
+          '/blog',
+          article.id
+        ]"
+      >
+
+        <div class="article-content">
+
+          <h2 class="article-header">
+            {{ article.title }}
+          </h2>
+
+          <span class="article-pub-date">
+            {{ article.date }}
+          </span>
+
+          <p class="article-description">
+            {{ article.text }}
+          </p>
+
+        </div>
+
+        <div class="article-image">
+
+          <img
+            src="images/blank.svg"
+            alt="Article image"
+          />
+
+        </div>
+
+      </a>
+
+    }
+
+    <a
+      routerLink="/blog"
+      class="article-navigate-button"
+    >
+      Смотреть все статьи
+    </a>
+
+  </section>
+
+}

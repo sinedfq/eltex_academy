@@ -1,50 +1,90 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal
+} from '@angular/core';
 
-interface ArticleItem {
-  id: number;
-  title: string;
-  date: string;
-  description: string;
-  image: string;
-}
+import {
+  CommonModule
+} from '@angular/common';
+
+import {
+  RouterLink
+} from '@angular/router';
+
+import {
+  ARTICLES_SERVICE_TOKEN
+} from '../../../core/services/articles/articles-service.token';
+
+import {
+  ArticlesStoreService
+} from '../../../core/services/articles/articles-store.service';
+
+import {
+  Article
+} from '../../../core/models/article.model';
 
 @Component({
   selector: 'app-articles',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './articles.html',
-  styleUrl: './articles.scss',
-})
-export class Articles {
-  protected readonly articles = signal<ArticleItem[]>([
-    {
-      id: 1,
-      title: 'Как создать адаптивный дизайн за 30 минут',
-      date: '15 декабря 2024',
-      description:
-        'В этой статье я расскажу о ключевых принципах создания мобильных интерфейсов, которые одинаково хорошо выглядят на всех устройствах.',
-      image: 'https://via.placeholder.com/420x320?text=Adaptive+Design',
-    },
-    {
-      id: 2,
-      title: 'UX-паттерны для удобных интерфейсов',
-      date: '2 января 2025',
-      description:
-        'Разбираем практические UX-паттерны для ленты статей, карточек и кнопок, которые помогают пользователю быстро понимать содержимое.',
-      image: 'https://via.placeholder.com/420x320?text=UX+Patterns',
-    },
-    {
-      id: 3,
-      title: 'Структура статьи: как писать ясно',
-      date: '30 марта 2025',
-      description:
-        'Простая структура, логичные заголовки и краткие абзацы помогают читателю быстро найти нужную информацию.',
-      image: 'https://via.placeholder.com/420x320?text=Writing+Tips',
-    },
-  ]);
 
-  protected trackById(index: number, article: ArticleItem) {
-    return article.id;
+  standalone: true,
+
+  imports: [
+    CommonModule,
+    RouterLink
+  ],
+
+  templateUrl: './articles.html',
+
+  styleUrl: './articles.scss',
+
+  changeDetection:
+    ChangeDetectionStrategy.OnPush
+})
+export class Articles
+implements OnInit {
+
+  private readonly articlesService =
+    inject(ARTICLES_SERVICE_TOKEN);
+
+  protected readonly store =
+    inject(ArticlesStoreService);
+
+  protected latestArticles =
+    signal<Article[]>([]);
+
+  public ngOnInit():
+    void {
+
+    this.loadArticles();
+  }
+
+  private loadArticles():
+    void {
+
+    if (
+      this.store.articles().length
+    ) {
+
+      this.latestArticles.set(
+        this.store
+          .articles()
+          .slice(0, 2)
+      );
+
+      return;
+    }
+
+    this.articlesService
+      .getArticles(1, 2)
+      .subscribe(response => {
+
+        // response is an array of Article
+        this.store.setArticles(response);
+
+        this.latestArticles.set(response);
+      });
   }
 }

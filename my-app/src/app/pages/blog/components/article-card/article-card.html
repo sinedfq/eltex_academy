@@ -1,40 +1,46 @@
-<div class="blog-article">
+<a class="blog-article-link" [routerLink]="['/blog', article().id]">
 
-    <div class="blog-article-controls">
+    <div class="blog-article">
 
-        <button
-            type="button"
-            class="blog-icon-btn edit"
-            (click)="onEdit()"
-        >
-            ✎
-        </button>
+        <div class="blog-article-controls">
 
-        <button
-            type="button"
-            class="blog-delete"
-            (click)="onDelete()"
-        >
-            ✕
-        </button>
+            <button type="button" class="blog-icon-btn edit" (click)="
+          $event.preventDefault();
+          $event.stopPropagation();
+          onEdit()
+        ">
+                <mat-icon>
+                    edit
+                </mat-icon>
+            </button>
+
+            <button type="button" class="blog-delete" (click)="
+          $event.preventDefault();
+          $event.stopPropagation();
+          onDelete()
+        ">
+                <mat-icon>
+                    delete
+                </mat-icon>
+            </button>
+
+        </div>
+
+        <img src="images/blank.svg" alt="Фото статьи" />
+
+        <div class="blog-content">
+
+            <p class="blog-text">
+                {{ article().title }}
+            </p>
+
+            <p class="blog-date">
+                Опубликовано:
+                {{ article().date }}
+            </p>
+
+        </div>
 
     </div>
 
-    <img
-        src="images/blank.svg"
-        alt="Фото статьи"
-    />
-
-    <div class="blog-content">
-
-        <p class="blog-text">
-            {{ article().title }}
-        </p>
-
-        <p class="blog-date">
-            Опубликовано: {{ article().date }}
-        </p>
-
-    </div>
-
-</div>
+</a>
