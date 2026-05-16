@@ -212,3 +212,18 @@
         width: calc(100vw - 16px);
     }
 }
+
+.blog-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+
+    margin-bottom: 40px;
+}
+
+.blog-page-number {
+    font-size: 18px;
+    font-weight: 600;
+}

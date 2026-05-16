@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { About } from "../about/about";
+import { About } from "../../ui/components/about/about";
 import { Career } from "./career/career";
 import { Education } from "./education/education";
 import { Courses } from "./courses/courses";

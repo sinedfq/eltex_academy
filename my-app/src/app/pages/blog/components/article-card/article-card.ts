@@ -5,7 +5,7 @@ import {
   output
 } from '@angular/core';
 
-import { Article } from '../../models/article.model';
+import { Article } from '../../../../core/models/article.model'
 
 @Component({
   selector: 'app-article-card',

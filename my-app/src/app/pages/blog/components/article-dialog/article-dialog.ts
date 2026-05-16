@@ -18,7 +18,7 @@ import {
 
 import { CommonModule } from '@angular/common';
 
-import { Article } from '../../models/article.model';
+import { Article } from '../../../../core/models/article.model';
 
 @Component({
   selector: 'app-article-dialog',
